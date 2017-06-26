@@ -21,6 +21,7 @@ RUN wget http://mirror.bit.edu.cn/apache/tomcat/tomcat-9/v9.0.0.M21/bin/apache-t
     && echo 'then' >> bin/run.sh \
     && echo '   for file in /data/config/*.sh' >> bin/run.sh \
     && echo '   do' >> bin/run.sh \
+    && echo '       chmod +x $file' >> bin/run.sh \
     && echo '       sh $file' >> bin/run.sh \
     && echo '   done' >> bin/run.sh \
     && echo 'fi' >> bin/run.sh \

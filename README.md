@@ -14,6 +14,7 @@ docker run -d -p 8080:8080 --name tomcat java:tomcat
 # 自定义volume（推荐）
 docker run -d -p 8080:8080 -v /data/config:/data/config -v /data/webapps:/data/webapps -v /data/logs:/data/logs --name tomcat java:tomcat
 ```
+> java:tomcat在启动时会自动搜寻并执行`/data/config/*.sh`。
 
 ## java-maven
 ```bash
