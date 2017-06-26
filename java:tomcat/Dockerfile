@@ -8,13 +8,31 @@ RUN wget http://mirror.bit.edu.cn/apache/tomcat/tomcat-9/v9.0.0.M21/bin/apache-t
     && rm -rf apache-tomcat-9.0.0.M21.tar.gz \
     && cd apache-tomcat-9.0.0.M21 \
     && sed -i '/# OS specific support/i\JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"\n' bin/catalina.sh \
-    && rm -rf webapps/*
+    && rm -rf webapps \
+    && rm -rf logs \
+    && mkdir -p /data/config \
+    && mkdir -p /data/webapps \
+    && mkdir -p /data/logs \
+    && ln -s /data/webapps \
+    && ln -s /data/logs \
+    && echo '#!/bin/bash' > bin/run.sh \
+    && echo '' >> bin/run.sh \
+    && echo 'if [ -n "ls /data/config/*.sh" ];' >> bin/run.sh \
+    && echo 'then' >> bin/run.sh \
+    && echo '   for file in /data/config/*.sh' >> bin/run.sh \
+    && echo '   do' >> bin/run.sh \
+    && echo '       sh $file' >> bin/run.sh \
+    && echo '   done' >> bin/run.sh \
+    && echo 'fi' >> bin/run.sh \
+    && echo '' >> bin/run.sh \
+    && echo 'bin/catalina.sh run' >> bin/run.sh \
+    && echo '' >> bin/run.sh \
+    && chmod +x bin/run.sh
 
 ENV CATALINA_HOME /usr/java/apache-tomcat-9.0.0.M21
 
-VOLUME ["/usr/java/apache-tomcat-9.0.0.M21/webapps"]
-VOLUME ["/usr/java/apache-tomcat-9.0.0.M21/logs"]
+VOLUME ["/data/config","/data/webapps","/data/logs"]
 
 # service on boot
 WORKDIR $CATALINA_HOME
-ENTRYPOINT bin/catalina.sh run
+ENTRYPOINT bin/run.sh
