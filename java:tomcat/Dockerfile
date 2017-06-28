@@ -1,13 +1,14 @@
 FROM java:base
 
-# install tomcat-9M21
+# install tomcat-9M22
 WORKDIR /usr/java
 
-RUN wget http://mirror.bit.edu.cn/apache/tomcat/tomcat-9/v9.0.0.M21/bin/apache-tomcat-9.0.0.M21.tar.gz \
-    && tar -zxf apache-tomcat-9.0.0.M21.tar.gz \
-    && rm -rf apache-tomcat-9.0.0.M21.tar.gz \
-    && cd apache-tomcat-9.0.0.M21 \
+RUN wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-9/v9.0.0.M22/bin/apache-tomcat-9.0.0.M22.tar.gz \
+    && tar -zxf apache-tomcat-9.0.0.M22.tar.gz \
+    && rm -rf apache-tomcat-9.0.0.M22.tar.gz \
+    && cd apache-tomcat-9.0.0.M22 \
     && sed -i '/# OS specific support/i\JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"\n' bin/catalina.sh \
+    && sed -i 's/redirectPort="8443" \/>/redirectPort="8443" URIEncoding="UTF-8" \/>/g' conf/server.xml \
     && rm -rf webapps \
     && rm -rf logs \
     && mkdir -p /data/config \
@@ -30,7 +31,7 @@ RUN wget http://mirror.bit.edu.cn/apache/tomcat/tomcat-9/v9.0.0.M21/bin/apache-t
     && echo '' >> bin/run.sh \
     && chmod +x bin/run.sh
 
-ENV CATALINA_HOME /usr/java/apache-tomcat-9.0.0.M21
+ENV CATALINA_HOME /usr/java/apache-tomcat-9.0.0.M22
 
 VOLUME ["/data/config","/data/webapps","/data/logs"]
 
