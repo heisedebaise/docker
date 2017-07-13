@@ -1,12 +1,12 @@
 FROM java:base
 
 # install tomcat-9M22
-WORKDIR /usr/java
-
-RUN wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-9/v9.0.0.M22/bin/apache-tomcat-9.0.0.M22.tar.gz \
-    && tar -zxf apache-tomcat-9.0.0.M22.tar.gz \
-    && rm -rf apache-tomcat-9.0.0.M22.tar.gz \
-    && cd apache-tomcat-9.0.0.M22 \
+RUN cd /usr/java \
+    && version=9.0.0.M22 \
+    && wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-${version:0:1}/v$version/bin/apache-tomcat-$version.tar.gz \
+    && tar -zxf apache-tomcat-$version.tar.gz \
+    && rm -rf apache-tomcat-$version.tar.gz \
+    && cd apache-tomcat-$version \
     && sed -i '/# OS specific support/i\JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"\n' bin/catalina.sh \
     && sed -i 's/redirectPort="8443" \/>/redirectPort="8443" URIEncoding="UTF-8" \/>/g' conf/server.xml \
     && rm -rf webapps \
