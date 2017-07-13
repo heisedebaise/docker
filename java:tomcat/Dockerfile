@@ -28,8 +28,7 @@ RUN wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-9/v9.0.0.M22/b
     && echo 'fi' >> bin/run.sh \
     && echo '' >> bin/run.sh \
     && echo 'bin/startup.sh' >> bin/run.sh \
-    && echo 'sleep 1s' >> bin/run.sh \
-    && echo 'tail -f logs/catalina.out' >> bin/run.sh \
+    && echo 'sleep 1024d' >> bin/run.sh \
     && echo '' >> bin/run.sh \
     && chmod +x bin/run.sh
 
