@@ -36,6 +36,8 @@ ENV CATALINA_HOME /usr/java/apache-tomcat-9.0.0.M22
 
 VOLUME ["/data/config","/data/webapps","/data/logs"]
 
+EXPOSE 8080
+
 # service on boot
 WORKDIR $CATALINA_HOME
 ENTRYPOINT bin/run.sh

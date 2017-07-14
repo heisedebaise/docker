@@ -1,9 +1,8 @@
 FROM java:base
 
 # install maven-3.5.0
-WORKDIR /usr/java
-
-RUN wget http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz \
+RUN cd /usr/java \
+    && wget http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz \
     && tar -zxf apache-maven-3.5.0-bin.tar.gz \
     && rm -rf apache-maven-3.5.0-bin.tar.gz
 
