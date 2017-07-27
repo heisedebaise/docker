@@ -39,14 +39,23 @@ docker build -t java:maven docker/java\:maven/
 ```bash
 docker build -t mariadb:base docker/mariadb\:base/
 
+docker run -d -p 3306:3306 \
+    --restart=always \
+    --name mariadb mariadb:base
+```
+
+# nginx:base
+```bash
+docker build -t nginx:base docker/nginx\:base/
+
 # 默认volume
-docker run -d -p 3306:3306 \
+docker run -d -p 80:80 -p 443:443 \
     --restart=always \
-    --name mariadb mariadb:base
+    --name nginx nginx:base
 # 自定义volume（推荐）
-docker run -d -p 3306:3306 \
+docker run -d -p 80:80 -p 443:443 \
     --restart=always \
-    -v /mariadb/data:/var/lib/mysql \
-    -v /mariadb/log:/var/log/mariadb \
-    --name mariadb mariadb:base
+    -v /nginx/conf.d:/etc/nginx/conf.d \
+    -v /nginx/log:/var/log/nginx \
+    --name nginx nginx:base
 ```
