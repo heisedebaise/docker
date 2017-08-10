@@ -42,12 +42,15 @@ docker build -t mariadb:base docker/mariadb\:base/
 
 # 默认volume
 docker run -d -p 3306:3306 \
+    --privileged=true \
     --restart=always \
     --name=mariadb mariadb:base
 
 # 自定义volume（推荐）
+rm -rf /mariadb
 mkdir -p /mariadb/log
 docker run -d -p 3306:3306 \
+    --privileged=true \
     --restart=always \
     --name=mariadb mariadb:base
 docker cp mariadb:/var/lib/mysql /mariadb/
@@ -55,11 +58,31 @@ docker cp mariadb:/etc/my.cnf.d /mariadb/
 docker stop mariadb
 docker rm mariadb
 docker run -d -p 3306:3306 \
+    --privileged=true \
     --restart=always \
     -v /mariadb/mysql:/var/lib/mysql \
     -v /mariadb/my.cnf.d:/etc/my.cnf.d \
     -v /mariadb/log:/var/log/mariadb \
     --name=mariadb mariadb:base
+```
+
+# mongodb:base
+```bash
+docker build -t mongodb:base docker/mongodb\:base/
+
+# 默认volume
+docker run -d -p 27017:27017 \
+    --privileged=true \
+    --restart=always \
+    --name=mongodb mongodb:base
+
+# 自定义volume（推荐）
+mkdir -p /mongodb/db
+docker run -d -p 27017:27017 \
+    --privileged=true \
+    --restart=always \
+    -v /mongodb:/data \
+    --name=mongodb mongodb:base
 ```
 
 # nginx:base

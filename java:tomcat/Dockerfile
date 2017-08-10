@@ -1,14 +1,17 @@
 FROM java:base
 
-# install tomcat-9M22
+# install tomcat-8.5.20
 RUN cd /usr/java \
-    && version=9.0.0.M22 \
-    && wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-${version:0:1}/v$version/bin/apache-tomcat-$version.tar.gz \
+    && version=8.5.20 \
+    && wget http://www-eu.apache.org/dist/tomcat/tomcat-8/v$version/bin/apache-tomcat-$version.tar.gz \
     && tar -zxf apache-tomcat-$version.tar.gz \
     && rm -rf apache-tomcat-$version.tar.gz \
     && cd apache-tomcat-$version \
     && sed -i '/# OS specific support/i\JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"\n' bin/catalina.sh \
-    && sed -i 's/redirectPort="8443" \/>/redirectPort="8443" URIEncoding="UTF-8" \/>/g' conf/server.xml \
+    && sed -i 's/redirectPort="8443" \/>/redirectPort="8443" \n               URIEncoding="UTF-8" \/>/g' conf/server.xml \
+    && sed -i 's/URIEncoding="UTF-8" \/>/URIEncoding="UTF-8" \n               compression="on" \/>/g' conf/server.xml \
+    && sed -i 's/compression="on" \/>/compression="on" \n               compressionMinSize="2048" \/>/g' conf/server.xml \
+    && sed -i 's/compressionMinSize="2048" \/>/compressionMinSize="2048" \n               compressableMimeType="appliaction\/json" \/>/g' conf/server.xml \
     && rm -rf webapps \
     && rm -rf logs \
     && mkdir -p /data/config \
@@ -32,7 +35,7 @@ RUN cd /usr/java \
     && echo '' >> bin/run.sh \
     && chmod +x bin/run.sh
 
-ENV CATALINA_HOME /usr/java/apache-tomcat-9.0.0.M22
+ENV CATALINA_HOME /usr/java/apache-tomcat-8.5.20
 
 VOLUME ["/data/config","/data/webapps","/data/logs"]
 
