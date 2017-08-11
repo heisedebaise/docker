@@ -5,6 +5,46 @@
 docker build -t centos:base docker/centos\:base/
 ```
 
+# nginx:base
+```bash
+docker build -t nginx:base docker/nginx\:base/
+
+# 默认volume
+docker run -d -p 80:80 -p 443:443 \
+    --privileged=true \
+    --restart=always \
+    --name=nginx nginx:base
+
+# 自定义volume（推荐）
+docker run -d -p 80:80 -p 443:443 \
+    --privileged=true \
+    --restart=always \
+    -v /nginx/conf.d:/etc/nginx/conf.d \
+    -v /nginx/log:/var/log/nginx \
+    -v /nginx/data:/usr/share/nginx/html \
+    --name=nginx nginx:base
+```
+
+# node:base
+```bash
+docker build -t node:base docker/node\:base/
+
+# 默认volume
+docker run -d -p port:port \
+    --privileged=true \
+    --restart=always \
+    --name=node node:base
+
+# 自定义volume（推荐）
+mkdir -p /node/app
+docker run -d -p port:port \
+    --privileged=true \
+    --restart=always \
+    -v /node:/data \
+    --name=node node:base
+```
+> 启动完成时会在`/data/log/start`中输出完成时间。
+
 # java:base
 ```bash
 docker build -t java:base docker/java\:base/
@@ -83,22 +123,4 @@ docker run -d -p 27017:27017 \
     --restart=always \
     -v /mongodb:/data \
     --name=mongodb mongodb:base
-```
-
-# nginx:base
-```bash
-docker build -t nginx:base docker/nginx\:base/
-
-# 默认volume
-docker run -d -p 80:80 -p 443:443 \
-    --restart=always \
-    --name=nginx nginx:base
-
-# 自定义volume（推荐）
-docker run -d -p 80:80 -p 443:443 \
-    --restart=always \
-    -v /nginx/conf.d:/etc/nginx/conf.d \
-    -v /nginx/log:/var/log/nginx \
-    -v /nginx/data:/usr/share/nginx/html \
-    --name=nginx nginx:base
 ```
