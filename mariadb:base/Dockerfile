@@ -9,7 +9,7 @@ RUN yum install -y mariadb-server \
     && sed -i '/\[mysql\]/a\default-character-set = utf8mb4' /etc/my.cnf.d/mysql-clients.cnf \
     && sed -i '/\[client\]/a\default-character-set = utf8mb4' /etc/my.cnf.d/client.cnf
 
-VOLUME ["/etc/my.cnf.d","/var/lib/mysql","/var/log/mariadb"]
+VOLUME ["/var/lib/mysql", "/var/log/mariadb"]
 
 EXPOSE 3306
 
