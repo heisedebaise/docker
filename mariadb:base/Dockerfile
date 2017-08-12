@@ -13,4 +13,4 @@ VOLUME ["/etc/my.cnf.d","/var/lib/mysql","/var/log/mariadb"]
 
 EXPOSE 3306
 
-ENTRYPOINT mysqld_safe --user=root
+ENTRYPOINT ["mysqld_safe", "--user=root"]

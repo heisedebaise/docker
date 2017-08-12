@@ -33,7 +33,7 @@ docker build -t node:base docker/node\:base/
 docker run -d -p port:port \
     --privileged=true \
     --restart=always \
-    --name=node node:base
+    --name=node node:base node index.js
 
 # 自定义volume（推荐）
 mkdir -p /node/app
@@ -41,9 +41,13 @@ docker run -d -p port:port \
     --privileged=true \
     --restart=always \
     -v /node:/data \
-    --name=node node:base
+    --name=node node:base node index.js
 ```
-> 启动完成时会在`/data/log/start`中输出完成时间。
+> 日志会被重定向到/data/log/console.out。
+
+> 端口号[port]根据具体场景选择。
+
+> 指令[node index.js]根据具体场景选择，如：[npm start]、[npm run build]等。
 
 # java:base
 ```bash

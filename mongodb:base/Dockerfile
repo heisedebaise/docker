@@ -8,4 +8,4 @@ VOLUME ["/data"]
 
 EXPOSE 27017
 
-ENTRYPOINT mongod
+ENTRYPOINT ["mongod"]

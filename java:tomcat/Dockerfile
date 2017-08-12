@@ -43,4 +43,4 @@ EXPOSE 8080
 
 # service on boot
 WORKDIR $CATALINA_HOME
-ENTRYPOINT bin/run.sh
+ENTRYPOINT ["bin/run.sh"]
