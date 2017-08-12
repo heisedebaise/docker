@@ -45,9 +45,9 @@ docker run -d -p port:port \
 ```
 > 日志会被重定向到/data/log/console.out。
 
-> 端口号[port]根据具体场景选择。
+> 端口号`port`根据具体场景选择。
 
-> 指令[node index.js]根据具体场景选择，如：[npm start]、[npm run build]等。
+> 指令`node index.js`根据具体场景选择，如：`npm start`、`npm run build`等。
 
 # java:base
 ```bash
