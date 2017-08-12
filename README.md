@@ -43,7 +43,7 @@ docker run -d -p port:port \
     -v /node:/data \
     --name=node node:base node index.js
 ```
-> 日志会被重定向到/data/log/console.out。
+> 日志会被重定向到`/data/log/console.out`。
 
 > 端口号`port`根据具体场景选择。
 
