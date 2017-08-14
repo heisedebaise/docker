@@ -16,8 +16,8 @@ docker run -d -p 3306:3306 \
     --name=mariadb mariadb:base
 
 # 自定义volume（推荐）
-rm -rf /mariadb
 mkdir -p /mariadb/log
+mkdir -p /mariadb/backup
 docker run -d -p 3306:3306 \
     --privileged=true \
     --restart=always \
@@ -30,8 +30,14 @@ docker run -d -p 3306:3306 \
     --restart=always \
     -v /mariadb/mysql:/var/lib/mysql \
     -v /mariadb/log:/var/log/mariadb \
+    -v /mariadb/backup:/backup \
     --name=mariadb mariadb:base
 ```
+> 当`/backup/schemas`存在时，将每小时自动备份数据库，备份的数据库由`schemas`文件指定，每个数据库名占一行。
+
+> 自动备份时需提供`-h127.0.0.1 -uroot -proot`用户认证。
+
+> 备份文件会被压缩为`tar.gz`文件，并且超过30天的备份文件会被删除。
 
 # mongodb:base
 ```bash
