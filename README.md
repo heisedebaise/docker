@@ -111,7 +111,7 @@ docker run -d -p port:port \
     -v /node:/data \
     --name=node node:base node index.js
 ```
-> Node版本号为：`8.3.0`。
+> Node版本号为：`8.3.0`；Yarn版本号为`0.27.5`。
 
 > 日志会被重定向到`/data/log/console.out`。
 
@@ -131,11 +131,10 @@ docker run -d -p 80:80 -p 443:443 \
     --name=nginx nginx:base
 
 # 自定义volume（推荐）
+mkdir -p /nginx/conf.d
 docker run -d -p 80:80 -p 443:443 \
     --privileged=true \
     --restart=always \
     -v /nginx/conf.d:/etc/nginx/conf.d \
-    -v /nginx/log:/var/log/nginx \
-    -v /nginx/data:/usr/share/nginx/html \
     --name=nginx nginx:base
 ```
