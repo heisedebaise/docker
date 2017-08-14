@@ -62,6 +62,7 @@ docker run -d -p 27017:27017 \
 ```bash
 docker build -t java:base docker/java\:base/
 ```
+> JDK版本号为：`8u144`。
 
 # java:tomcat
 ```bash
@@ -82,12 +83,15 @@ docker run -d -p 8080:8080 \
     -v /tomcat/logs:/data/logs \
     --name=tomcat java:tomcat
 ```
-> java:tomcat在启动时会自动搜寻并执行`/data/config/*.sh`。
+> Tomcat版本号为：`8.5.20`。
+
+> 启动时会自动搜寻并执行`/data/config/*.sh`。
 
 # java:maven
 ```bash
 docker build -t java:maven docker/java\:maven/
 ```
+> Maven版本号为：`3.5.0`。
 
 # node:base
 ```bash
@@ -107,6 +111,8 @@ docker run -d -p port:port \
     -v /node:/data \
     --name=node node:base node index.js
 ```
+> Node版本号为：`8.3.0`。
+
 > 日志会被重定向到`/data/log/console.out`。
 
 > 端口号`port`根据具体场景选择。
