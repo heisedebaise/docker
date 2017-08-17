@@ -104,14 +104,20 @@ docker run -d -p port:port \
     --name=node node:base node index.js
 
 # 自定义volume（推荐）
+mkdir -p /node/config
 mkdir -p /node/app
+mkdir -p /node/log
 docker run -d -p port:port \
     --privileged=true \
     --restart=always \
-    -v /node:/data \
+    -v /node/config:/data/config \
+    -v /node/app:/data/app \
+    -v /node/log:/data/log \
     --name=node node:base node index.js
 ```
-> Node版本号为：`8.3.0`；Yarn版本号为`0.27.5`。
+> Node版本号为：`8.3.0`。
+
+> 启动时会自动搜寻并执行`/data/config/*.sh`。
 
 > 日志会被重定向到`/data/log/console.out`。
 
