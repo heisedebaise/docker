@@ -62,7 +62,7 @@ docker run -d -p 27017:27017 \
 ```bash
 docker build -t java:base docker/java\:base/
 ```
-> JDK版本号为：`8u144`。
+> JDK版本号为：`OpenJDK-1.8`。
 
 # java:tomcat
 ```bash
@@ -78,20 +78,16 @@ docker run -d -p 8080:8080 \
 docker run -d -p 8080:8080 \
     --privileged=true \
     --restart=always \
+    --link=mariadb \
+    --link=mongodb \
     -v /tomcat/config:/data/config \
     -v /tomcat/webapps:/data/webapps \
     -v /tomcat/logs:/data/logs \
     --name=tomcat java:tomcat
 ```
-> Tomcat版本号为：`8.5.20`。
+> Tomcat版本号为：`8.5.20`；当返回`application/json`数据大小超过`4K`时启用`GZIP`压缩。
 
 > 启动时会自动搜寻并执行`/data/config/*.sh`。
-
-# java:maven
-```bash
-docker build -t java:maven docker/java\:maven/
-```
-> Maven版本号为：`3.5.0`。
 
 # node:base
 ```bash
@@ -115,7 +111,7 @@ docker run -d -p port:port \
     -v /node/log:/data/log \
     --name=node node:base node index.js
 ```
-> Node版本号为：`8.3.0`。
+> Node版本号为：`8.4.0`。
 
 > 启动时会自动搜寻并执行`/data/config/*.sh`。
 
