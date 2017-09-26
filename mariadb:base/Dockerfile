@@ -1,4 +1,4 @@
-from centos:base
+FROM centos:base
 
 RUN yum install -y mariadb-server \
     && mysql_install_db --user=root \

@@ -1,4 +1,4 @@
-from centos:base
+FROM centos:base
 
 RUN yum install -y epel-release \
     && yum install -y nginx \

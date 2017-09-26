@@ -1,4 +1,4 @@
-from centos:base
+FROM centos:base
 
 ENV NODE_VERSION 8.4.0
 
