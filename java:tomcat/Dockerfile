@@ -1,8 +1,8 @@
 FROM java:base
 
-# install tomcat-8.5.20
-RUN version=8.5.20 \
-    && wget http://www-eu.apache.org/dist/tomcat/tomcat-8/v$version/bin/apache-tomcat-$version.tar.gz \
+# install tomcat-8.5.23
+RUN version=8.5.23 \
+    && wget http://mirror.bit.edu.cn/apache/tomcat/tomcat-8/v$version/bin/apache-tomcat-$version.tar.gz \
     && tar -zxf apache-tomcat-$version.tar.gz \
     && rm -rf apache-tomcat-$version.tar.gz \
     && cd apache-tomcat-$version \
@@ -31,7 +31,7 @@ RUN version=8.5.20 \
     && echo '' >> bin/run.sh \
     && chmod +x bin/run.sh
 
-ENV CATALINA_HOME /apache-tomcat-8.5.20
+ENV CATALINA_HOME /apache-tomcat-8.5.23
 
 VOLUME ["/data/config","/data/webapps","/data/logs"]
 
