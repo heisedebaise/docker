@@ -1,11 +1,11 @@
 FROM java:base
 
-# install tomcat-8.5.23
-RUN version=8.5.23 \
-    && wget http://mirror.bit.edu.cn/apache/tomcat/tomcat-8/v$version/bin/apache-tomcat-$version.tar.gz \
-    && tar -zxf apache-tomcat-$version.tar.gz \
-    && rm -rf apache-tomcat-$version.tar.gz \
-    && cd apache-tomcat-$version \
+ENV VERSION 8.5.23
+
+RUN wget http://mirror.bit.edu.cn/apache/tomcat/tomcat-8/v$VERSION/bin/apache-tomcat-$VERSION.tar.gz \
+    && tar -zxf apache-tomcat-$VERSION.tar.gz \
+    && rm -rf apache-tomcat-$VERSION.tar.gz \
+    && cd apache-tomcat-$VERSION \
     && sed -i '/# OS specific support/i\JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"\n' bin/catalina.sh \
     && sed -i 's/port="8080"/port="8080"\n               compression="on"\n               compressionMinSize="4096"\n               compressableMimeType="application\/json"\n              /' conf/server.xml \
     && rm -rf webapps \
@@ -31,12 +31,12 @@ RUN version=8.5.23 \
     && echo '' >> bin/run.sh \
     && chmod +x bin/run.sh
 
-ENV CATALINA_HOME /apache-tomcat-8.5.23
+ENV CATALINA_HOME /apache-tomcat-$VERSION
 
 VOLUME ["/data/config","/data/webapps","/data/logs"]
 
 EXPOSE 8080
 
-# service on boot
 WORKDIR $CATALINA_HOME
+
 ENTRYPOINT ["bin/run.sh"]

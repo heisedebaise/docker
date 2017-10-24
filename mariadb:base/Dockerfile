@@ -2,6 +2,8 @@ FROM centos:base
 
 RUN yum install -y mariadb-server \
     && mysql_install_db --user=root \
+    && sed -i '/\[mysqld\]/a\long_query_time = 1' /etc/my.cnf.d/server.cnf \
+    && sed -i '/\[mysqld\]/a\log-slow-queries = /var/log/mariadb/slow-queries.log' /etc/my.cnf.d/server.cnf \
     && sed -i '/\[mysqld\]/a\max_heap_table_size = 1073741824' /etc/my.cnf.d/server.cnf \
     && sed -i '/\[mysqld\]/a\collation-server = utf8mb4_unicode_ci' /etc/my.cnf.d/server.cnf \
     && sed -i '/\[mysqld\]/a\character-set-server = utf8mb4' /etc/my.cnf.d/server.cnf \
