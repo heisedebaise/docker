@@ -85,7 +85,7 @@ docker run -d -p 8080:8080 \
     -v /tomcat/logs:/data/logs \
     --name=tomcat java:tomcat
 ```
-> Tomcat版本号为：`8.5.20`；当返回`application/json`数据大小超过`4K`时启用`GZIP`压缩。
+> Tomcat版本号为：`8.5.23`；当返回`application/json`数据大小超过`4K`时启用`GZIP`压缩。
 
 > 启动时会自动搜寻并执行`/data/config/*.sh`。
 
@@ -138,5 +138,6 @@ docker run -d -p 80:80 -p 443:443 \
     --privileged=true \
     --restart=always \
     -v /nginx/conf.d:/etc/nginx/conf.d \
+    -v /nginx/log:/var/log/nginx \
     --name=nginx nginx:base
 ```

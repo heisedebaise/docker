@@ -2,6 +2,8 @@ FROM java:base
 
 ENV VERSION 8.5.23
 
+ENV CATALINA_HOME /apache-tomcat-$VERSION
+
 RUN wget http://mirror.bit.edu.cn/apache/tomcat/tomcat-8/v$VERSION/bin/apache-tomcat-$VERSION.tar.gz \
     && tar -zxf apache-tomcat-$VERSION.tar.gz \
     && rm -rf apache-tomcat-$VERSION.tar.gz \
@@ -26,12 +28,15 @@ RUN wget http://mirror.bit.edu.cn/apache/tomcat/tomcat-8/v$VERSION/bin/apache-to
     && echo '   done' >> bin/run.sh \
     && echo 'fi' >> bin/run.sh \
     && echo '' >> bin/run.sh \
+    && echo 'mv ' >> bin/run.sh \
+    && echo '' >> bin/run.sh \
+    && echo 'mv /data/logs/catalina.out /data/logs/catalina-`date +%Y%m%d%H%M%S`.out' >> bin/run.sh \
+    && echo 'find /data/logs/ -mtime +30 -exec rm  {} \;' >> bin/run.sh \
+    && echo '' >> bin/run.sh \
     && echo 'bin/startup.sh' >> bin/run.sh \
     && echo 'sleep 1024d' >> bin/run.sh \
     && echo '' >> bin/run.sh \
     && chmod +x bin/run.sh
-
-ENV CATALINA_HOME /apache-tomcat-$VERSION
 
 VOLUME ["/data/config","/data/webapps","/data/logs"]
 
