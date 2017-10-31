@@ -31,6 +31,7 @@ RUN wget http://mirror.bit.edu.cn/apache/tomcat/tomcat-8/v$VERSION/bin/apache-to
     && echo 'mv ' >> bin/run.sh \
     && echo '' >> bin/run.sh \
     && echo 'mv /data/logs/catalina.out /data/logs/catalina-`date +%Y%m%d%H%M%S`.out' >> bin/run.sh \
+    && echo 'echo > /data/logs/catalina.out' >> bin/run.sh \
     && echo 'find /data/logs/ -mtime +30 -exec rm  {} \;' >> bin/run.sh \
     && echo '' >> bin/run.sh \
     && echo 'bin/startup.sh' >> bin/run.sh \
