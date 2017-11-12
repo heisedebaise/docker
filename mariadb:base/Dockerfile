@@ -34,7 +34,6 @@ RUN yum install -y mariadb-server \
     && echo 'mysqld_safe --user=root' >> /mariadb.sh \
     && chmod +x /mariadb.sh
 
-
 VOLUME ["/var/lib/mysql", "/var/log/mariadb", "/backup"]
 
 EXPOSE 3306
