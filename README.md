@@ -16,21 +16,23 @@ docker run -d -p 3306:3306 \
     --name=mariadb mariadb:base
 
 # 自定义volume（推荐）
-mkdir -p /mariadb/log
-mkdir -p /mariadb/backup
+mkdir -p /mariadb
 docker run -d -p 3306:3306 \
     --privileged=true \
     --restart=always \
     --name=mariadb mariadb:base
+docker cp mariadb:/etc/my.cnf.d /mariadb/
 docker cp mariadb:/var/lib/mysql /mariadb/
+docker cp mariadb:/var/backup /mariadb/
 docker stop mariadb
 docker rm mariadb
 docker run -d -p 3306:3306 \
     --privileged=true \
     --restart=always \
+    -v /mariadb/my.cnf.d:/etc/my.cnf.d \
     -v /mariadb/mysql:/var/lib/mysql \
     -v /mariadb/log:/var/log/mariadb \
-    -v /mariadb/backup:/backup \
+    -v /mariadb/backup:/var/backup \
     --name=mariadb mariadb:base
 ```
 > 当`/backup/schemas`存在时，将每小时自动备份数据库，备份的数据库由`schemas`文件指定，每个数据库名占一行。
