@@ -143,3 +143,22 @@ docker run -d -p 80:80 -p 443:443 \
     -v /nginx/log:/var/log/nginx \
     --name=nginx nginx:base
 ```
+
+# chrome:base
+```bash
+docker build -t chrome:base docker/chrome\:base/
+
+# 默认volume
+docker run -d -p 9222:9222 \
+    --privileged=true \
+    --restart=always \
+    --name=chrome chrome:base
+
+# 自定义volume（推荐）
+chmod +x /chrome/fonts/*
+docker run -d -p 9222:9222 \
+    --privileged=true \
+    --restart=always \
+    -v /chrome/fonts:/root/.fonts \
+    --name=chrome chrome:base
+```
