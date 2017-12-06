@@ -113,7 +113,7 @@ docker run -d -p port:port \
     -v /node/log:/data/log \
     --name=node node:base node index.js
 ```
-> Node版本号为：`8.4.0`。
+> Node版本号为：`9.2.0`。
 
 > 启动时会自动搜寻并执行`/data/config/*.sh`。
 

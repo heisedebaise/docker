@@ -1,6 +1,6 @@
 FROM centos:base
 
-ENV NODE_VERSION 8.4.0
+ENV NODE_VERSION 9.2.0
 
 RUN set -ex \
     && wget https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz \
