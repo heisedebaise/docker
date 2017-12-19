@@ -1,10 +1,10 @@
 FROM java:base
 
-ENV VERSION 8.5.23
+ENV VERSION 8.5.24
 
 ENV CATALINA_HOME /apache-tomcat-$VERSION
 
-RUN wget http://mirror.bit.edu.cn/apache/tomcat/tomcat-8/v$VERSION/bin/apache-tomcat-$VERSION.tar.gz \
+RUN wget http://www-eu.apache.org/dist/tomcat/tomcat-8/v$VERSION/bin/apache-tomcat-$VERSION.tar.gz \
     && tar -zxf apache-tomcat-$VERSION.tar.gz \
     && rm -rf apache-tomcat-$VERSION.tar.gz \
     && cd apache-tomcat-$VERSION \
