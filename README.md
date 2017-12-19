@@ -102,9 +102,9 @@ docker run -d -p port:port \
     --name=node node:base node index.js
 
 # 自定义volume（推荐）
-mkdir -p /node/config
-mkdir -p /node/app
-mkdir -p /node/log
+mkdir -p /home/node/config
+mkdir -p /home/node/app
+mkdir -p /home/node/log
 docker run -d -p port:port \
     --privileged=true \
     --restart=always \
