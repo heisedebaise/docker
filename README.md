@@ -16,11 +16,11 @@ docker run -d -p 3306:3306 \
     --name=mariadb mariadb:base
 
 # 自定义volume（推荐）
-mkdir -p /home/mariadb
 docker run -d -p 3306:3306 \
     --privileged=true \
     --restart=always \
     --name=mariadb mariadb:base
+mkdir -p /home/mariadb
 docker cp mariadb:/etc/my.cnf.d /home/mariadb/
 docker cp mariadb:/var/lib/mysql /home/mariadb/
 docker cp mariadb:/var/backup /home/mariadb/
@@ -87,7 +87,7 @@ docker run -d -p 8080:8080 \
     -v /home/tomcat/logs:/data/logs \
     --name=tomcat java:tomcat
 ```
-> Tomcat版本号为：`8.5.23`；当返回`application/json`数据大小超过`4K`时启用`GZIP`压缩。
+> Tomcat版本号为：`8.5.24`；当返回`application/json`数据大小超过`4K`时启用`GZIP`压缩。
 
 > 启动时会自动搜寻并执行`/data/config/*.sh`。
 
@@ -113,7 +113,7 @@ docker run -d -p port:port \
     -v /home/node/log:/data/log \
     --name=node node:base node index.js
 ```
-> Node版本号为：`9.2.0`。
+> Node版本号为：`9.3.0`。
 
 > 启动时会自动搜寻并执行`/data/config/*.sh`。
 
@@ -155,7 +155,7 @@ docker run -d -p 9222:9222 \
     --name=chrome chrome:base
 
 # 自定义volume（推荐）
-chmod +x /chrome/fonts/*
+chmod +x /home/chrome/fonts/*
 docker run -d -p 9222:9222 \
     --privileged=true \
     --restart=always \
