@@ -1,10 +1,10 @@
 FROM java:base
 
-ENV VERSION 8.5.24
+ENV VERSION 8.5.28
 
 ENV CATALINA_HOME /apache-tomcat-$VERSION
 
-RUN wget http://www-eu.apache.org/dist/tomcat/tomcat-8/v$VERSION/bin/apache-tomcat-$VERSION.tar.gz \
+RUN curl -O http://www-eu.apache.org/dist/tomcat/tomcat-8/v$VERSION/bin/apache-tomcat-$VERSION.tar.gz \
     && tar -zxf apache-tomcat-$VERSION.tar.gz \
     && rm -rf apache-tomcat-$VERSION.tar.gz \
     && cd apache-tomcat-$VERSION \
@@ -16,31 +16,18 @@ RUN wget http://www-eu.apache.org/dist/tomcat/tomcat-8/v$VERSION/bin/apache-tomc
     && mkdir -p /data/webapps \
     && mkdir -p /data/logs \
     && ln -s /data/webapps \
-    && ln -s /data/logs \
-    && echo '#!/bin/bash' > bin/run.sh \
-    && echo '' >> bin/run.sh \
-    && echo 'if [ -n "ls /data/config/*.sh" ];' >> bin/run.sh \
-    && echo 'then' >> bin/run.sh \
-    && echo '   for file in /data/config/*.sh' >> bin/run.sh \
-    && echo '   do' >> bin/run.sh \
-    && echo '       chmod +x $file' >> bin/run.sh \
-    && echo '       sh $file' >> bin/run.sh \
-    && echo '   done' >> bin/run.sh \
-    && echo 'fi' >> bin/run.sh \
-    && echo '' >> bin/run.sh \
-    && echo 'cp /data/logs/catalina.out /data/logs/catalina-`date +%Y%m%d%H%M%S`.out' >> bin/run.sh \
-    && echo 'echo > /data/logs/catalina.out' >> bin/run.sh \
-    && echo 'find /data/logs/ -mtime +30 -exec rm  {} \;' >> bin/run.sh \
-    && echo '' >> bin/run.sh \
-    && echo 'bin/startup.sh' >> bin/run.sh \
-    && echo 'sleep 1024d' >> bin/run.sh \
-    && echo '' >> bin/run.sh \
+    && ln -s /data/logs
+
+WORKDIR $CATALINA_HOME
+
+COPY *.sh bin/
+
+RUN chmod +x bin/timer.sh \
+    && echo "0 4 * * * $CATALINA_HOME/bin/timer.sh" > /var/spool/cron/root \
     && chmod +x bin/run.sh
 
 VOLUME ["/data/config","/data/webapps","/data/logs"]
 
 EXPOSE 8080
 
-WORKDIR $CATALINA_HOME
-
-ENTRYPOINT ["bin/run.sh"]
+CMD ["bin/run.sh"]

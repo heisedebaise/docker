@@ -35,11 +35,11 @@ docker run -d -p 3306:3306 \
     -v /home/mariadb/backup:/var/backup \
     --name=mariadb mariadb:base
 ```
-> 当`/backup/schemas`存在时，将每小时自动备份数据库，备份的数据库由`schemas`文件指定，每个数据库名占一行。
+> 当`/var/backup/schemas`存在时，将每小时自动备份数据库，备份的数据库由`schemas`文件指定，每个数据库名占一行。
 
 > 自动备份时需提供`-h127.0.0.1 -uroot -proot`用户认证。
 
-> 备份文件会被压缩为`tar.gz`文件，并且超过30天的备份文件会被删除。
+> 备份文件会被压缩为`tar.gz`文件，并且超过`7`天的备份文件会被删除。
 
 # mongodb:base
 ```bash
@@ -87,9 +87,11 @@ docker run -d -p 8080:8080 \
     -v /home/tomcat/logs:/data/logs \
     --name=tomcat java:tomcat
 ```
-> Tomcat版本号为：`8.5.24`；当返回`application/json`数据大小超过`4K`时启用`GZIP`压缩。
+> Tomcat版本号为：`8.5.28`；当返回`application/json`数据大小超过`4K`时启用`GZIP`压缩。
 
 > 启动时会自动搜寻并执行`/data/config/*.sh`。
+
+> `catalina.out`日志文件每天凌晨`4`点自动进行备份，超过`7`天的备份文件会被删除。
 
 # node:base
 ```bash
@@ -113,7 +115,7 @@ docker run -d -p port:port \
     -v /home/node/log:/data/log \
     --name=node node:base node index.js
 ```
-> Node版本号为：`9.3.0`。
+> Node版本号为：`9.6.0`。
 
 > 启动时会自动搜寻并执行`/data/config/*.sh`。
 
@@ -154,11 +156,12 @@ docker run -d -p 9222:9222 \
     --restart=always \
     --name=chrome chrome:base
 
-# 自定义volume（推荐）
+# 自定义volume & shm（推荐）
 chmod +x /home/chrome/fonts/*
 docker run -d -p 9222:9222 \
     --privileged=true \
     --restart=always \
+    --shm-size=1g \
     -v /home/chrome/fonts:/root/.fonts \
     --name=chrome chrome:base
 ```

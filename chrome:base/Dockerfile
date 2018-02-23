@@ -1,11 +1,8 @@
 FROM centos:base
 
-RUN echo '[google-chrome]' > /etc/yum.repos.d/google-chrome.repo \
-    && echo 'name=google-chrome' >> /etc/yum.repos.d/google-chrome.repo \
-    && echo 'baseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64' >> /etc/yum.repos.d/google-chrome.repo \
-    && echo 'enabled=1' >> /etc/yum.repos.d/google-chrome.repo \
-    && echo 'gpgcheck=1' >> /etc/yum.repos.d/google-chrome.repo \
-    && echo 'gpgkey=https://dl.google.com/linux/linux_signing_key.pub' >> /etc/yum.repos.d/google-chrome.repo \
+COPY google-chrome.repo /etc/yum.repos.d/
+
+RUN yum install -y epel-release \
     && yum install -y google-chrome
 
 VOLUME [ "/root/.fonts" ]

@@ -1,7 +1,7 @@
 FROM centos
 
 RUN yum update -y \
-    && yum install -y yum-cron wget kde-l10n-Chinese net-tools \
+    && yum install -y yum-cron kde-l10n-Chinese net-tools \
     && yum reinstall -y glibc-common \
     && rm -rf /etc/localtime \
     && ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
