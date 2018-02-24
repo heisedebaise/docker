@@ -82,6 +82,8 @@ docker run -d -p 8080:8080 \
     --restart=always \
     --link=mariadb \
     --link=mongodb \
+    --memory=4g \
+    --memory-swap=4g \
     -v /home/tomcat/config:/data/config \
     -v /home/tomcat/webapps:/data/webapps \
     -v /home/tomcat/logs:/data/logs \
