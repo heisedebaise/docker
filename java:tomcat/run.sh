@@ -11,4 +11,4 @@ then
    done
 fi
 
-bin/catalina.sh run >> /data/logs/catalina.out
+bin/startup.sh

@@ -9,6 +9,7 @@ RUN curl -O http://www-eu.apache.org/dist/tomcat/tomcat-8/v$VERSION/bin/apache-t
     && rm -rf apache-tomcat-$VERSION.tar.gz \
     && cd apache-tomcat-$VERSION \
     && sed -i '/# OS specific support/i\JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"\n' bin/catalina.sh \
+    && sed -i 's/>> "$CATALINA_OUT" 2>&1 "&"/>> "$CATALINA_OUT" 2>\&1/g' bin/catalina.sh \
     && sed -i 's/port="8080"/port="8080"\n               compression="on"\n               compressionMinSize="4096"\n               compressableMimeType="application\/json"\n              /' conf/server.xml \
     && rm -rf webapps \
     && rm -rf logs \
