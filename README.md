@@ -1,7 +1,7 @@
 整理docker文档，统一开发、测试、生产环境。
 
 # centos:base
-```base
+```bash
 docker build -t centos:base docker/centos\:base/
 ```
 
