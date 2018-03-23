@@ -1,10 +1,11 @@
-FROM java:base
+FROM java:1.8
 
-ENV VERSION 8.5.28
+ENV VERSION 8.5.29
 
 ENV CATALINA_HOME /apache-tomcat-$VERSION
 
-RUN curl -O http://www-eu.apache.org/dist/tomcat/tomcat-8/v$VERSION/bin/apache-tomcat-$VERSION.tar.gz \
+RUN yum install -y crontabs \
+    && curl -O https://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v$VERSION/bin/apache-tomcat-$VERSION.tar.gz \
     && tar -zxf apache-tomcat-$VERSION.tar.gz \
     && rm -rf apache-tomcat-$VERSION.tar.gz \
     && cd apache-tomcat-$VERSION \
@@ -27,7 +28,7 @@ RUN chmod +x bin/timer.sh \
     && echo "0 4 * * * $CATALINA_HOME/bin/timer.sh" > /var/spool/cron/root \
     && chmod +x bin/run.sh
 
-VOLUME ["/data/config","/data/webapps","/data/logs"]
+VOLUME ["/data/config", "/data/webapps", "/data/logs"]
 
 EXPOSE 8080
 

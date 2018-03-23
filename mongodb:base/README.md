@@ -1,0 +1,24 @@
+# mongodb:base
+
+## 构建
+```bash
+docker build -t mongodb:base docker/mongodb\:base/
+```
+
+## 运行
+```bash
+docker run -d -p 27017:27017 \
+    --privileged=true \
+    --restart=always \
+    --name=mongodb mongodb:base
+```
+
+## 运行（推荐）
+```bash
+mkdir -p /home/mongodb/db
+docker run -d -p 27017:27017 \
+    --privileged=true \
+    --restart=always \
+    -v /home/mongodb:/data \
+    --name=mongodb mongodb:base
+```

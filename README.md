@@ -1,169 +1,48 @@
 整理docker文档，统一开发、测试、生产环境。
 
-# centos:base
+# 压缩
+
+建议通过使用`save/load`来减少占用的磁盘空间。
+
 ```bash
-docker build -t centos:base docker/centos\:base/
-```
-
-# mariadb:base
-```bash
-docker build -t mariadb:base docker/mariadb\:base/
-
-# 默认volume
-docker run -d -p 3306:3306 \
-    --privileged=true \
-    --restart=always \
-    --name=mariadb mariadb:base
-
-# 自定义volume（推荐）
-docker run -d -p 3306:3306 \
-    --privileged=true \
-    --restart=always \
-    --name=mariadb mariadb:base
-mkdir -p /home/mariadb
-docker cp mariadb:/etc/my.cnf.d /home/mariadb/
-docker cp mariadb:/var/lib/mysql /home/mariadb/
-docker cp mariadb:/var/backup /home/mariadb/
-docker stop mariadb
-docker rm mariadb
-docker run -d -p 3306:3306 \
-    --privileged=true \
-    --restart=always \
-    -v /home/mariadb/my.cnf.d:/etc/my.cnf.d \
-    -v /home/mariadb/mysql:/var/lib/mysql \
-    -v /home/mariadb/log:/var/log/mariadb \
-    -v /home/mariadb/backup:/var/backup \
-    --name=mariadb mariadb:base
-```
-> 当`/var/backup/schemas`存在时，将每小时自动备份数据库，备份的数据库由`schemas`文件指定，每个数据库名占一行。
-
-> 自动备份时需提供`-h127.0.0.1 -uroot -proot`用户认证。
-
-> 备份文件会被压缩为`tar.gz`文件，并且超过`7`天的备份文件会被删除。
-
-# mongodb:base
-```bash
-docker build -t mongodb:base docker/mongodb\:base/
-
-# 默认volume
-docker run -d -p 27017:27017 \
-    --privileged=true \
-    --restart=always \
-    --name=mongodb mongodb:base
-
-# 自定义volume（推荐）
-mkdir -p /home/mongodb/db
-docker run -d -p 27017:27017 \
-    --privileged=true \
-    --restart=always \
-    -v /home/mongodb:/data \
-    --name=mongodb mongodb:base
-```
-
-# java:base
-```bash
-docker build -t java:base docker/java\:base/
-```
-> JDK版本号为：`OpenJDK-1.8`。
-
-# java:tomcat
-```bash
-docker build -t java:tomcat docker/java\:tomcat/
-
-# 默认volume
-docker run -d -p 8080:8080 \
-    --privileged=true \
-    --restart=always \
-    --name=tomcat java:tomcat
-
-# 自定义volume（推荐）
-docker run -d -p 8080:8080 \
-    --privileged=true \
-    --restart=always \
-    --link=mariadb \
-    --link=mongodb \
-    --memory=4g \
-    --memory-swappiness=0 \
-    -v /home/tomcat/config:/data/config \
-    -v /home/tomcat/webapps:/data/webapps \
-    -v /home/tomcat/logs:/data/logs \
-    --name=tomcat java:tomcat
-```
-> Tomcat版本号为：`8.5.28`；当返回`application/json`数据大小超过`4K`时启用`GZIP`压缩。
-
-> 启动时会自动搜寻并执行`/data/config/*.sh`。
-
-> `catalina.out`日志文件每天凌晨`4`点自动进行备份，超过`7`天的备份文件会被删除。
-
-# node:base
-```bash
-docker build -t node:base docker/node\:base/
-
-# 默认volume
-docker run -d -p port:port \
-    --privileged=true \
-    --restart=always \
-    --name=node node:base node index.js
-
-# 自定义volume（推荐）
-mkdir -p /home/node/config
-mkdir -p /home/node/app
-mkdir -p /home/node/log
-docker run -d -p port:port \
-    --privileged=true \
-    --restart=always \
-    -v /home/node/config:/data/config \
-    -v /home/node/app:/data/app \
-    -v /home/node/log:/data/log \
-    --name=node node:base node index.js
-```
-> Node版本号为：`9.6.0`。
-
-> 启动时会自动搜寻并执行`/data/config/*.sh`。
-
-> 日志会被重定向到`/data/log/console.out`。
-
-> 端口号`port`根据具体场景选择。
-
-> 指令`node index.js`根据具体场景选择，如：`npm start`、`npm run build`等。
-
-
-# nginx:base
-```bash
-docker build -t nginx:base docker/nginx\:base/
-
-# 默认volume
-docker run -d -p 80:80 -p 443:443 \
-    --privileged=true \
-    --restart=always \
-    --name=nginx nginx:base
-
-# 自定义volume（推荐）
-mkdir -p /nginx/conf.d
-docker run -d -p 80:80 -p 443:443 \
-    --privileged=true \
-    --restart=always \
-    -v /home/nginx/conf.d:/etc/nginx/conf.d \
-    -v /home/nginx/log:/var/log/nginx \
-    --name=nginx nginx:base
-```
-
-# chrome:base
-```bash
-docker build -t chrome:base docker/chrome\:base/
-
-# 默认volume
-docker run -d -p 9222:9222 \
-    --privileged=true \
-    --restart=always \
-    --name=chrome chrome:base
-
-# 自定义volume & shm（推荐）
-chmod +x /home/chrome/fonts/*
-docker run -d -p 9222:9222 \
-    --privileged=true \
-    --restart=always \
-    --shm-size=1g \
-    -v /home/chrome/fonts:/root/.fonts \
-    --name=chrome chrome:base
+# docker images -a
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+mysql               base                abe466bbe17a        8 seconds ago       1.56 GB
+<none>              <none>              000cda67b76a        9 seconds ago       1.56 GB
+<none>              <none>              acc06e4f2306        10 seconds ago      1.56 GB
+<none>              <none>              b9b3f4b016a0        10 seconds ago      1.56 GB
+<none>              <none>              e61eeaba8b89        11 seconds ago      1.56 GB
+<none>              <none>              5cfabd786e5f        11 seconds ago      1.56 GB
+<none>              <none>              e2c655c4ac87        11 seconds ago      1.56 GB
+<none>              <none>              0530973389e0        12 seconds ago      1.56 GB
+centos              base                298cebb50a9e        31 minutes ago      390 MB
+docker.io/centos    latest              3fa822599e10        3 months ago        204 MB
+# docker save -o mysql.tar mysql:base 
+# docker rmi mysql:base 
+Untagged: mysql:base
+Deleted: sha256:abe466bbe17a42c980056113ac275f37da804391fd92dabd8a897306bdbdd7cd
+Deleted: sha256:000cda67b76ae9ef96b599ce079773a1fe3459444c374242ac12e05339bb2bd1
+Deleted: sha256:acc06e4f2306861c9cb4c689b0a8038adc185f2f8d48a55a1ec73d4660dac643
+Deleted: sha256:b9b3f4b016a0c07dc4ef1d9ed0a5faba3ebe495e1dc748e66f52f1c79c9b7866
+Deleted: sha256:9738772ebe15cd0c48cab18227e085bf220d1532dc4eeb10224638c73920ac77
+Deleted: sha256:e2c655c4ac8713b08b861c26230256d1cc465b4219de4ba81eec47b027893753
+Deleted: sha256:427a098d607d6686dc10e82bb33228054a74766a1dc3665c3c07c2f3be2a8060
+Deleted: sha256:5cfabd786e5f5cd1e420bf4d36b581ae4513f7452c37bc3c603d54d0022252e8
+Deleted: sha256:8cf4d14a195bcbeb31461328433a215697d6cb51865449d95fc677edf40a0f33
+Deleted: sha256:e61eeaba8b890dbecd50765b0706cfa62cbf53567e6388c04206d76d0a1cb90b
+Deleted: sha256:fca8dda3e5633cb0fb13eb7eed8017ce653d903633016bf8f46e87e4340315ad
+Deleted: sha256:0530973389e07bcead9ac7c55f2b30ead7cf03d18988d0b0e1ff005314b88d7b
+Deleted: sha256:a2789d184d56aa207793506f376575df648a668a8a3bf3bdb6684d40cf8b7261
+# docker load -i mysql.tar 
+d714fbaa7464: Loading layer [==================================================>]  1.17 GB/1.17 GB
+8c5fceddc3a6: Loading layer [==================================================>] 4.096 kB/4.096 kB
+670d32ec32d8: Loading layer [==================================================>]  2.56 kB/2.56 kB
+6952cced9123: Loading layer [==================================================>] 3.072 kB/3.072 kB
+61b731fe9224: Loading layer [==================================================>] 6.144 kB/6.144 kB
+Loaded image: mysql:base
+# docker images -a
+REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
+mysql               base                abe466bbe17a        About a minute ago   1.56 GB
+centos              base                298cebb50a9e        32 minutes ago       390 MB
+docker.io/centos    latest              3fa822599e10        3 months ago         204 MB
 ```
