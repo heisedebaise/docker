@@ -7,7 +7,7 @@
 ```bash
 # docker images -a
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-mysql               base                abe466bbe17a        8 seconds ago       1.56 GB
+mysql               5.7                 abe466bbe17a        8 seconds ago       1.56 GB
 <none>              <none>              000cda67b76a        9 seconds ago       1.56 GB
 <none>              <none>              acc06e4f2306        10 seconds ago      1.56 GB
 <none>              <none>              b9b3f4b016a0        10 seconds ago      1.56 GB
@@ -17,9 +17,9 @@ mysql               base                abe466bbe17a        8 seconds ago       
 <none>              <none>              0530973389e0        12 seconds ago      1.56 GB
 centos              base                298cebb50a9e        31 minutes ago      390 MB
 docker.io/centos    latest              3fa822599e10        3 months ago        204 MB
-# docker save -o mysql.tar mysql:base 
-# docker rmi mysql:base 
-Untagged: mysql:base
+# docker save -o mysql.tar mysql:5.7 
+# docker rmi mysql:5.7 
+Untagged: mysql:5.7
 Deleted: sha256:abe466bbe17a42c980056113ac275f37da804391fd92dabd8a897306bdbdd7cd
 Deleted: sha256:000cda67b76ae9ef96b599ce079773a1fe3459444c374242ac12e05339bb2bd1
 Deleted: sha256:acc06e4f2306861c9cb4c689b0a8038adc185f2f8d48a55a1ec73d4660dac643
@@ -39,10 +39,10 @@ d714fbaa7464: Loading layer [==================================================>
 670d32ec32d8: Loading layer [==================================================>]  2.56 kB/2.56 kB
 6952cced9123: Loading layer [==================================================>] 3.072 kB/3.072 kB
 61b731fe9224: Loading layer [==================================================>] 6.144 kB/6.144 kB
-Loaded image: mysql:base
+Loaded image: mysql:5.7
 # docker images -a
 REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
-mysql               base                abe466bbe17a        About a minute ago   1.56 GB
+mysql               5.7                 abe466bbe17a        About a minute ago   1.56 GB
 centos              base                298cebb50a9e        32 minutes ago       390 MB
 docker.io/centos    latest              3fa822599e10        3 months ago         204 MB
 ```
