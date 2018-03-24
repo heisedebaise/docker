@@ -23,6 +23,7 @@ docker run -d -p 8080:8080 \
 ```bash
 docker run -d -p 8080:8080 \
     --privileged=true \
+    --restart=always \
     --link=mysql \
     --memory=4g \
     --memory-swappiness=0 \
