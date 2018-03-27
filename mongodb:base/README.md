@@ -1,5 +1,7 @@
 # mongodb:base
 
+构建基于`mongodb-org`的MongoDB服务，版本号为：3.6。
+
 ## 构建
 ```bash
 docker build -t mongodb:base docker/mongodb\:base/

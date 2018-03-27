@@ -1,11 +1,12 @@
 FROM centos:base
 
-RUN yum install -y epel-release \
-    && yum install -y mongodb-server mongodb \
+COPY mongodb.repo /etc/yum.repos.d/
+
+RUN yum install -y mongodb-org-server mongodb-org \
     && mkdir -p /data/db
 
 VOLUME ["/data"]
 
 EXPOSE 27017
 
-ENTRYPOINT ["mongod"]
+ENTRYPOINT ["mongod", "--bind_ip_all"]
