@@ -18,9 +18,11 @@ docker run -d -p 27017:27017 \
 ## 运行（推荐）
 ```bash
 mkdir -p /home/mongodb/db
+mkdir -p /home/mongodb/log
 docker run -d -p 27017:27017 \
     --privileged=true \
     --restart=always \
-    -v /home/mongodb:/data \
+    -v /home/mongodb/db:/data/db \
+    -v /home/mongodb/log:/var/log/mongodb \
     --name=mongodb mongodb:base
 ```
