@@ -19,6 +19,7 @@ docker run -d -p 8192:8192 \
 ```bash
 docker run -d -p 8192:8192 \
     --privileged=true \
+    --restart=always \
     -v /home/wormhole/conf:/wormhole/conf \
     -v /home/wormhole/image:/wormhole/image \
     --name=wormhole go:wormhole
