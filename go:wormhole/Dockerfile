@@ -7,7 +7,9 @@ RUN yum install -y git \
     && sh bin/install.sh
 
 WORKDIR /wormhole
+
 VOLUME [ "/wormhole/conf", "/wormhole/whimg" ]
+
 EXPOSE 8192
 
 ENTRYPOINT [ "bin/run.sh" ]
