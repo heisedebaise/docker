@@ -32,3 +32,4 @@ docker run -d -p 8080:8080 \
     -v /home/tomcat/logs:/data/logs \
     --name=tomcat tomcat:8.5
 ```
+> 建议设置Tomcat启动时的`-Xms`&`-Xmx`参数值，默认最大内存通常只有总内存的`1/4`；可通过`java -XX:+PrintFlagsFinal -version | grep -iE 'HeapSize|PermSize|ThreadStackSize'`查看默认内存配置值。
