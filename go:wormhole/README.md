@@ -22,5 +22,6 @@ docker run -d -p 8192:8192 \
     --restart=always \
     -v /home/wormhole/conf:/wormhole/conf \
     -v /home/wormhole/whimg:/wormhole/whimg \
+    -v /home/wormhole/whfile:/wormhole/whfile \
     --name=wormhole go:wormhole
 ```

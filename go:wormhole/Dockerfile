@@ -8,7 +8,7 @@ RUN yum install -y git \
 
 WORKDIR /wormhole
 
-VOLUME [ "/wormhole/conf", "/wormhole/whimg" ]
+VOLUME [ "/wormhole/conf", "/wormhole/whimg", "/wormhole/whfile" ]
 
 EXPOSE 8192
 
