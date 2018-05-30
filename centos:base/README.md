@@ -6,3 +6,10 @@
 ```bash
 docker build -t centos:base docker/centos\:base/
 ```
+
+## 运行
+```bash
+docker run -it \
+    --privileged=true \
+    --name=centos centos:base
+```
