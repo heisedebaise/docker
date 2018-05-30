@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! -f "/var/backup/schemas" ]; then
+if [ ! -f "/var/mysql/backup/schemas" ]; then
     exit 0
 fi
 
