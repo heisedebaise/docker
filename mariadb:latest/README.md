@@ -1,4 +1,4 @@
-# mariadb:base
+# mariadb:latest
 
 构建基于`MariaDB`的MySQL服务。
 - 当`/var/backup/schemas`存在时，将每小时自动备份数据库，备份的数据库由`schemas`文件指定，每个数据库名占一行。
@@ -7,7 +7,7 @@
 
 ## 构建
 ```bash
-docker build -t mariadb:base docker/mariadb\:base/
+docker build -t mariadb:latest docker/mariadb\:latest/
 ```
 
 ## 运行
@@ -15,7 +15,7 @@ docker build -t mariadb:base docker/mariadb\:base/
 docker run -d -p 3306:3306 \
     --privileged=true \
     --restart=always \
-    --name=mariadb mariadb:base
+    --name=mariadb mariadb:latest
 ```
 
 ## 运行（推荐）
@@ -23,7 +23,7 @@ docker run -d -p 3306:3306 \
 docker run -d -p 3306:3306 \
     --privileged=true \
     --restart=always \
-    --name=mariadb mariadb:base
+    --name=mariadb mariadb:latest
 mkdir -p /home/mariadb
 docker cp mariadb:/etc/my.cnf.d /home/mariadb/
 docker cp mariadb:/var/lib/mysql /home/mariadb/
@@ -37,5 +37,5 @@ docker run -d -p 3306:3306 \
     -v /home/mariadb/mysql:/var/lib/mysql \
     -v /home/mariadb/log:/var/log/mariadb \
     -v /home/mariadb/backup:/var/backup \
-    --name=mariadb mariadb:base
+    --name=mariadb mariadb:latest
 ```
