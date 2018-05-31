@@ -46,3 +46,9 @@ mysql               5.7                 abe466bbe17a        About a minute ago  
 centos              base                298cebb50a9e        32 minutes ago       390 MB
 docker.io/centos    latest              3fa822599e10        3 months ago         204 MB
 ```
+
+## docker stats format
+
+```bash
+docker stats --format 'table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.MemPerc}}\t{{.NetIO}}\t{{.BlockIO}}\t{{.PIDs}}'
+```
