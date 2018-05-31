@@ -1,10 +1,10 @@
-# go:wormhole
+# wormhole:latest
 
 构建`wormhole`服务。
 
 ## 构建
 ```bash
-docker build -t go:wormhole docker/go\:wormhole/
+docker build -t wormhole:latest docker/wormhole\:latest/
 ```
 
 ## 运行
@@ -12,7 +12,7 @@ docker build -t go:wormhole docker/go\:wormhole/
 docker run -d -p 8192:8192 \
     --privileged=true \
     --restart=always \
-    --name=wormhole go:wormhole
+    --name=wormhole wormhole:latest
 ```
 
 ## 运行（推荐）
@@ -23,5 +23,5 @@ docker run -d -p 8192:8192 \
     -v /home/wormhole/conf:/wormhole/conf \
     -v /home/wormhole/whimg:/wormhole/whimg \
     -v /home/wormhole/whfile:/wormhole/whfile \
-    --name=wormhole go:wormhole
+    --name=wormhole wormhole:latest
 ```
