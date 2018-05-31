@@ -1,8 +1,8 @@
-# nginx:base
+# nginx:latest
 
 ## 构建
 ```bash
-docker build -t nginx:base docker/nginx\:base/
+docker build -t nginx:latest docker/nginx\:latest/
 ```
 
 ## 运行
@@ -10,7 +10,7 @@ docker build -t nginx:base docker/nginx\:base/
 docker run -d -p 80:80 -p 443:443 \
     --privileged=true \
     --restart=always \
-    --name=nginx nginx:base
+    --name=nginx nginx:latest
 ```
 
 ## 运行（推荐）
@@ -21,5 +21,5 @@ docker run -d -p 80:80 -p 443:443 \
     --restart=always \
     -v /home/nginx/conf.d:/etc/nginx/conf.d \
     -v /home/nginx/log:/var/log/nginx \
-    --name=nginx nginx:base
+    --name=nginx nginx:latest
 ```
