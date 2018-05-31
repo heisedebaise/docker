@@ -1,10 +1,10 @@
-# mongodb:base
+# mongodb:3.6
 
 构建基于`mongodb-org`的MongoDB服务，版本号为：3.6。
 
 ## 构建
 ```bash
-docker build -t mongodb:base docker/mongodb\:base/
+docker build -t mongodb:3.6 docker/mongodb\:3.6/
 ```
 
 ## 运行
@@ -12,7 +12,7 @@ docker build -t mongodb:base docker/mongodb\:base/
 docker run -d -p 27017:27017 \
     --privileged=true \
     --restart=always \
-    --name=mongodb mongodb:base
+    --name=mongodb mongodb:3.6
 ```
 
 ## 运行（推荐）
@@ -24,5 +24,5 @@ docker run -d -p 27017:27017 \
     --restart=always \
     -v /home/mongodb/db:/data/db \
     -v /home/mongodb/log:/var/log/mongodb \
-    --name=mongodb mongodb:base
+    --name=mongodb mongodb:3.6
 ```
