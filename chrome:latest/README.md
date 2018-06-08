@@ -17,6 +17,7 @@ docker run -d -p 9222:9222 \
 
 ## 运行（推荐）
 ```bash
+mkdir -p /home/chrome/fonts/
 chmod +x /home/chrome/fonts/*
 docker run -d -p 9222:9222 \
     --privileged=true \

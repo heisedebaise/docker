@@ -4,7 +4,7 @@ if [ ! -f "/var/mysql/backup/schemas" ]; then
     exit 0
 fi
 
-cd /var/backup
+cd /var/mysql/backup
 cat schemas | while read line
 do
     mysqldump -h127.0.0.1 -uroot -proot $line >> $line.sql
