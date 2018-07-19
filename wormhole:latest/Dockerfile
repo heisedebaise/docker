@@ -10,6 +10,7 @@ WORKDIR /wormhole
 
 VOLUME [ "/wormhole/conf", "/wormhole/whimg", "/wormhole/whfile" ]
 
+EXPOSE 2048
 EXPOSE 8192
 
 ENTRYPOINT [ "bin/run.sh" ]
