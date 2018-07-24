@@ -12,5 +12,6 @@ VOLUME [ "/wormhole/conf", "/wormhole/whimg", "/wormhole/whfile" ]
 
 EXPOSE 2048
 EXPOSE 8192
+EXPOSE 8443
 
 ENTRYPOINT [ "bin/run.sh" ]

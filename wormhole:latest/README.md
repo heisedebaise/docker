@@ -9,7 +9,7 @@ docker build -t wormhole:latest docker/wormhole\:latest/
 
 ## 运行
 ```bash
-docker run -d -p 2048:2048 -p 8192:8192 \
+docker run -d -p 2048:2048 -p 8192:8192 -p 8443:8443 \
     --privileged=true \
     --restart=always \
     --name=wormhole wormhole:latest
@@ -17,7 +17,7 @@ docker run -d -p 2048:2048 -p 8192:8192 \
 
 ## 运行（推荐）
 ```bash
-docker run -d -p 2048:2048 -p 8192:8192 \
+docker run -d -p 2048:2048 -p 8192:8192 -p 8443:8443 \
     --privileged=true \
     --restart=always \
     -v /home/wormhole/conf:/wormhole/conf \
