@@ -1,6 +1,6 @@
 FROM java:1.8
 
-ENV VERSION 8.5.32
+ENV VERSION 8.5.33
 
 ENV CATALINA_HOME /apache-tomcat-$VERSION
 
