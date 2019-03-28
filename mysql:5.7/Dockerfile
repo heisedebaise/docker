@@ -1,6 +1,6 @@
 FROM centos:base
 
-RUN yum install -y crontabs https://repo.mysql.com//mysql80-community-release-el7-2.noarch.rpm \
+RUN yum install -y crontabs https://repo.mysql.com//mysql57-community-release-el7-10.noarch.rpm \
     && yum install -y mysql-community-server \
     && sed -i 's,/var/log/mysqld.log,/var/log/mysql/mysqld.log,g' /etc/my.cnf \
     && echo '' >> /etc/my.cnf \
