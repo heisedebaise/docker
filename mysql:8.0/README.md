@@ -39,3 +39,8 @@ docker run -d -p 3306:3306 \
     -v /home/mysql/log:/var/log/mysql \
     --name=mysql mysql:8.0
 ```
+
+## 修改密码
+```
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
+```
