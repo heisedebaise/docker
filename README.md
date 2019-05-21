@@ -17,7 +17,7 @@ mysql               5.7                 abe466bbe17a        8 seconds ago       
 <none>              <none>              0530973389e0        12 seconds ago      1.56 GB
 centos              base                298cebb50a9e        31 minutes ago      390 MB
 docker.io/centos    latest              3fa822599e10        3 months ago        204 MB
-# docker save -o mysql.tar mysql:5.7 
+# docker save -o mysql.tar mysql:5.7
 # docker rmi mysql:5.7 
 Untagged: mysql:5.7
 Deleted: sha256:abe466bbe17a42c980056113ac275f37da804391fd92dabd8a897306bdbdd7cd
