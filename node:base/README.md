@@ -1,6 +1,6 @@
 # node:base
 
-- Node版本号为：`9.6.0`。
+- Node版本号为：`10.16.3`。
 - 启动时会自动搜寻并执行`/data/config/*.sh`。
 - 日志会被重定向到`/data/log/console.out`。
 - 端口号`port`根据具体场景选择。
