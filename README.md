@@ -1,4 +1,10 @@
-整理docker文档，统一开发、测试、生产环境。
+# install
+
+```bash
+yum install -y docker
+systemctl enable docker
+systemctl restart docker
+```
 
 # 压缩
 
