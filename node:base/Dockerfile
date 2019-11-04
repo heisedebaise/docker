@@ -1,6 +1,6 @@
 FROM centos:base
 
-ENV NODE_VERSION 9.6.0
+ENV NODE_VERSION 10.16.3
 
 RUN set -ex \
     && curl -O https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz \
