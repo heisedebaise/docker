@@ -30,6 +30,7 @@ docker cp mysql5:/var/lib/mysql /home/mysql5/data
 docker cp mysql5:/var/mysql/backup /home/mysql5/
 docker stop mysql5
 docker rm mysql5
+rm -rf /home/mysql5/data/mysql.sock.lock
 docker run -d -p 3307:3306 \
     --privileged=true \
     --restart=always \
