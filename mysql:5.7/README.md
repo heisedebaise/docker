@@ -33,6 +33,7 @@ docker rm mysql5
 rm -rf /home/mysql5/data/mysql.sock.lock
 docker run -d -p 3307:3306 \
     --privileged=true \
+    --restart=always \
     -v /home/mysql5/my.cnf.d:/etc/my.cnf.d \
     -v /home/mysql5/data:/var/lib/mysql \
     -v /home/mysql5/backup:/var/mysql/backup \
