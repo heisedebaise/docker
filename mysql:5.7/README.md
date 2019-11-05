@@ -33,10 +33,21 @@ docker rm mysql5
 rm -rf /home/mysql5/data/mysql.sock.lock
 docker run -d -p 3307:3306 \
     --privileged=true \
-    --restart=always \
     -v /home/mysql5/my.cnf.d:/etc/my.cnf.d \
     -v /home/mysql5/data:/var/lib/mysql \
     -v /home/mysql5/backup:/var/mysql/backup \
     -v /home/mysql5/log:/var/log/mysql \
     --name=mysql5 mysql:5.7
+```
+
+## 修改密码
+```
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
+```
+
+## 创建用户
+```
+CREATE USER 'root'@'172.17.0.%' IDENTIFIED BY 'root';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.17.0.%';
+FLUSH PRIVILEGES;
 ```
