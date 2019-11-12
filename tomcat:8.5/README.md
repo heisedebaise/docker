@@ -24,7 +24,6 @@ docker run -d -p 8080:8080 \
 docker run -d -p 8080:8080 \
     --privileged=true \
     --restart=always \
-    --link=mysql \
     --memory=4g \
     --memory-swappiness=0 \
     -v /home/tomcat/config:/data/config \
