@@ -12,3 +12,10 @@ docker run -d -p 80:80 -p 443:443 \
     --restart=always \
     --name=certbot certbot:base
 ```
+
+## 新证书
+
+```
+docker exec -it certbot certbot-2 certonly --standalone --register-unsafely-without-email -d {domain}
+docker exec -it certbot certbot-2 certonly --standalone --register-unsafely-without-email -d lvpw.xyz
+```
