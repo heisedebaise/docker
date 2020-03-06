@@ -1,14 +1,11 @@
 FROM centos:base
 
-RUN mkdir -p /certbot/certs
+RUN yum install -y epel-release \
+    && yum install -y certbot \
+    && mkdir -p /certbot/certs
 
-COPY certbot-auto /certbot/
-COPY run.sh /certbot/
-
-RUN chmod +x /certbot/certbot-auto \
-    && chmod +x /certbot/run.sh \
-    && /certbot/certbot-auto -y
+COPY *.sh /certbot/
 
 VOLUME [ "/certbot/certs" ]
 
-CMD [ "/certbot/run.sh" ]
+CMD [ "/certbot/renew.sh" ]
