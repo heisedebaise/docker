@@ -10,6 +10,7 @@ docker build -t certbot:base docker/certbot\:base/
 docker run -d -p 80:80/tcp -p 443:443/tcp \
     --privileged=true \
     --restart=always \
+    -v /home/cert:/certbot/cert \
     --name=certbot certbot:base
 ```
 
