@@ -15,7 +15,7 @@ function sync () {
 while [ true ]
 do
     sleep 1s
-    if [ `ls /etc/letsencrypt/live/ | wc -l` != `ls /certbot/cert/ | wc -l` ]; then
+    if [ `ls /etc/letsencrypt/live/ | wc -l` <= `ls /certbot/cert/ | wc -l` ]; then
         sync
     fi
 done
