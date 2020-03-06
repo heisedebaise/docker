@@ -7,7 +7,7 @@ COPY run.sh /certbot/
 
 RUN chmod +x /certbot/certbot-auto \
     && chmod +x /certbot/run.sh \
-    && /certbot/certbot-auto
+    && /certbot/certbot-auto -y
 
 VOLUME [ "/certbot/certs" ]
 
