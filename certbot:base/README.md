@@ -9,5 +9,6 @@ docker build -t certbot:base docker/certbot\:base/
 ```bash
 docker run -it \
     --privileged=true \
-    --name=centos centos:base
+    --restart=always \
+    --name=certbot certbot:base
 ```
