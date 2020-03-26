@@ -4,7 +4,7 @@
 
 ## 构建
 ```bash
-docker build -t chrome:latest docker/chrome\:latest/
+docker build -t chrome:latest chrome\:latest/
 ```
 
 ## 运行

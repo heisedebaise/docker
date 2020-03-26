@@ -7,7 +7,7 @@
 
 ## 构建
 ```bash
-docker build -t mariadb:latest docker/mariadb\:latest/
+docker build -t mariadb:latest mariadb\:latest/
 ```
 
 ## 运行

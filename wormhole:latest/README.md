@@ -4,7 +4,7 @@
 
 ## 构建
 ```bash
-docker build -t wormhole:latest docker/wormhole\:latest/
+docker build -t wormhole:latest wormhole\:latest/
 ```
 
 ## 运行

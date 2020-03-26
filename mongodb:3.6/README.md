@@ -4,7 +4,7 @@
 
 ## 构建
 ```bash
-docker build -t mongodb:3.6 docker/mongodb\:3.6/
+docker build -t mongodb:3.6 mongodb\:3.6/
 ```
 
 ## 运行

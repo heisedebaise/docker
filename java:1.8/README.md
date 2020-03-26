@@ -4,5 +4,5 @@
 
 ## 构建
 ```bash
-docker build -t java:1.8 docker/java\:1.8/
+docker build -t java:1.8 java\:1.8/
 ```

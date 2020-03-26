@@ -7,7 +7,7 @@
 
 ## 构建
 ```bash
-docker build -t mysql:8.0 docker/mysql\:8.0/
+docker build -t mysql:8.0 mysql\:8.0/
 ```
 
 ## 运行

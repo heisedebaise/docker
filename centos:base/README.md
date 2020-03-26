@@ -4,7 +4,7 @@
 
 ## 构建
 ```bash
-docker build -t centos:base docker/centos\:base/
+docker build -t centos:base centos\:base/
 ```
 
 ## 运行

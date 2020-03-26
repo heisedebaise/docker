@@ -8,7 +8,7 @@
 
 ## 构建
 ```bash
-docker build -t node:base docker/node\:base/
+docker build -t node:base node\:base/
 ```
 
 ## 运行

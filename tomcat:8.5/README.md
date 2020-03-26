@@ -8,7 +8,7 @@
 
 ## 构建
 ```bash
-docker build -t tomcat:8.5 docker/tomcat\:8.5/
+docker build -t tomcat:8.5 tomcat\:8.5/
 ```
 
 ## 运行

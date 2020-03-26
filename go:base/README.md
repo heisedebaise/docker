@@ -4,5 +4,5 @@
 
 ## 构建
 ```bash
-docker build -t go:base docker/go\:base/
+docker build -t go:base go\:base/
 ```

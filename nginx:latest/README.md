@@ -2,7 +2,7 @@
 
 ## 构建
 ```bash
-docker build -t nginx:latest docker/nginx\:latest/
+docker build -t nginx:latest nginx\:latest/
 ```
 
 ## 运行
