@@ -1,7 +1,11 @@
 # install
 
 ```bash
-yum install -y docker
+dnf config-manager --add-repo=https://download.docker.com/linux/fedora/docker-ce.repo
+```
+
+```bash
+dnf install -y docker-ce
 systemctl enable docker
 systemctl restart docker
 ```
