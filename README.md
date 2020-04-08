@@ -10,6 +10,10 @@ systemctl enable docker
 systemctl restart docker
 ```
 
+```bash
+dnf install -y podman
+```
+
 # 压缩
 
 建议通过使用`save/load`来减少占用的磁盘空间。
