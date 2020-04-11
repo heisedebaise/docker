@@ -28,8 +28,6 @@ RUN set -ex \
     && echo '$@ >> /data/log/console.out' >> /node.sh \
     && chmod +x /node.sh
 
-VOLUME ["/data/config", "/data/app", "/data/log"]
-
 WORKDIR /data/app
 
 ENTRYPOINT ["/node.sh"]

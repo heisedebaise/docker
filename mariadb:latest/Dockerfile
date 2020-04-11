@@ -13,8 +13,6 @@ RUN chmod +x /mariadb.sh \
     && chmod +x /var/backup/timer.sh \
     && echo '0 * * * * /var/backup/timer.sh' > /var/spool/cron/root
 
-VOLUME ["/etc/my.cnf.d", "/var/lib/mysql", "/var/log/mariadb", "/var/backup"]
-
 EXPOSE 3306
 
 ENTRYPOINT ["/mariadb.sh"]

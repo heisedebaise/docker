@@ -28,8 +28,6 @@ RUN chmod +x bin/timer.sh \
     && echo "0 4 * * * $CATALINA_HOME/bin/timer.sh" > /var/spool/cron/root \
     && chmod +x bin/run.sh
 
-VOLUME ["/data/config", "/data/webapps", "/data/logs"]
-
 EXPOSE 8080
 
 CMD ["bin/run.sh"]

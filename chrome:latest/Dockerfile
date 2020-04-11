@@ -5,8 +5,6 @@ COPY google-chrome.repo /etc/yum.repos.d/
 RUN yum install -y epel-release \
     && yum install -y google-chrome
 
-VOLUME [ "/root/.fonts" ]
-
 EXPOSE 9222
 
 ENTRYPOINT [ "google-chrome", \

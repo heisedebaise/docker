@@ -19,8 +19,6 @@ RUN chmod +x /var/mysql/run.sh \
     && chmod +x /var/mysql/backup/timer.sh \
     && echo '0 * * * * /var/mysql/backup/timer.sh' > /var/spool/cron/root
 
-VOLUME ["/etc/my.cnf.d", "/var/lib/mysql", "/var/mysql/backup", "/var/log/mysql"]
-
 EXPOSE 3306
 
 ENTRYPOINT ["/var/mysql/run.sh"]

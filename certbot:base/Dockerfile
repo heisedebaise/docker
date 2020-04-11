@@ -8,8 +8,6 @@ COPY renew.sh /certbot/
 
 RUN chmod +x /certbot/renew.sh
 
-VOLUME [ "/certbot/cert" ]
-
 EXPOSE 80/tcp 443/tcp
 
 CMD [ "/certbot/renew.sh" ]
