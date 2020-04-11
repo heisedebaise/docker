@@ -16,5 +16,6 @@ docker run -it \
     --name=centos centos:base
 
 podman run -it \
+    --privileged=true \
     --name=centos centos:base
 ```

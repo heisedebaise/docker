@@ -1,25 +1,24 @@
 FROM centos:base
 
-RUN yum install -y crontabs https://repo.mysql.com//mysql80-community-release-el7-2.noarch.rpm \
-    && yum install -y mysql-community-release \
-    && sed -i 's,/var/log/mysqld.log,/var/log/mysql/mysqld.log,g' /etc/my.cnf \
-    && echo '' >> /etc/my.cnf \
-    && echo '!includedir /etc/my.cnf.d' >> /etc/my.cnf \
+RUN dnf install -y crontabs https://repo.mysql.com/mysql80-community-release-el8-1.noarch.rpm \
+    && dnf install -y mysql-server \
+    && echo '' >> /etc/my.cnf.d/mysql-server.cnf \
+    && echo 'max_connections = 1024' >> /etc/my.cnf.d/mysql-server.cnf \
+    && echo 'max_heap_table_size = 1g' >> /etc/my.cnf.d/mysql-server.cnf \
+    && echo 'tmp_table_size = 1g' >> /etc/my.cnf.d/mysql-server.cnf \
+    && echo 'innodb_buffer_pool_size = 1g' >> /etc/my.cnf.d/mysql-server.cnf \
     && mkdir -p /var/mysql/backup \
     && echo 'information_schema' > /var/mysql/backup/schemas \
     && echo 'mysql' >> /var/mysql/backup/schemas \
     && echo 'performance_schema' >> /var/mysql/backup/schemas \
-    && echo 'sys' >> /var/mysql/backup/schemas 
+    && echo 'sys' >> /var/mysql/backup/schemas
 
-COPY *.cnf /etc/my.cnf.d/
 COPY run.sh /var/mysql/
 COPY timer.sh /var/mysql/backup/
 
 RUN chmod +x /var/mysql/run.sh \
     && chmod +x /var/mysql/backup/timer.sh \
     && echo '0 * * * * /var/mysql/backup/timer.sh' > /var/spool/cron/root
-
-VOLUME ["/etc/my.cnf.d", "/var/lib/mysql", "/var/mysql/backup", "/var/log/mysql"]
 
 EXPOSE 3306
 
