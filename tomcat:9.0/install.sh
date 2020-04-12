@@ -10,7 +10,7 @@ tar -zxf apache-tomcat-$version.tar.gz
 rm -rf apache-tomcat-$version.tar.gz
 
 cd apache-tomcat-$version
-sed -i '/# OS specific support/i\JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"\n' bin/catalina.sh
+sed -i '/# OS specific support/i\JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dfile.encoding=UTF-8"\n' bin/catalina.sh
 sed -i 's/>> "$CATALINA_OUT" 2>&1 "&"/>> "$CATALINA_OUT" 2>\&1/g' bin/catalina.sh
 sed -i 's/port="8080"/port="8080"\n               compression="on"\n               compressionMinSize="4096"\n               compressableMimeType="application\/json"\n              /' conf/server.xml
 rm -rf webapps
