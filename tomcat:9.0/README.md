@@ -20,6 +20,7 @@ docker run -d -p 8080:8080 \
     --name=tomcat tomcat:9.0
 
 podman run -d -p 8080:8080 \
+    --privileged=true \
     --name=tomcat tomcat:9.0
 ```
 
