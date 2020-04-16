@@ -2,7 +2,7 @@
 
 ## 构建
 ```bash
-docker build -t certbot:base docker/certbot\:base/
+docker build -t certbot:base certbot\:base/
 ```
 
 ## 运行

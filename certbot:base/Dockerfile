@@ -1,7 +1,7 @@
 FROM centos:base
 
-RUN yum install -y epel-release \
-    && yum install -y certbot \
+RUN dnf install -y epel-release \
+    && dnf install -y certbot \
     && mkdir -p /certbot/cert
 
 COPY renew.sh /certbot/
