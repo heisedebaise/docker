@@ -51,8 +51,9 @@ podman run -d -p 8080:8080 \
 mkdir -p $HOME/tomcat/config
 mkdir -p $HOME/tomcat/webapps
 mkdir -p $HOME/tomcat/logs
-podman run -d -p 8080:8080 \
+podman run -d \
     --privileged=true \
+    --pod=localhost \
     -v $HOME/tomcat/config:/data/config \
     -v $HOME/tomcat/webapps:/data/webapps \
     -v $HOME/tomcat/logs:/data/logs \

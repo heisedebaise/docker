@@ -19,7 +19,7 @@ docker run -d -p 3306:3306 \
     --restart=always \
     --name=mysql mysql:8.0
 
-docker run -d -p 3306:3306 \
+podman run -d -p 3306:3306 \
     --privileged=true \
     --name=mysql mysql:8.0
 ```
@@ -51,25 +51,6 @@ podman run -d -p 3306:3306 \
     --privileged=true \
     --name=mysql mysql:8.0
 sleep 10s
-mkdir -p $HOME/mysql/log
-podman cp mysql:/etc/my.cnf.d $HOME/mysql/
-podman cp mysql:/var/lib/mysql $HOME/mysql/data
-podman cp mysql:/var/mysql/backup $HOME/mysql/
-podman stop mysql
-podman rm mysql
-rm -rf $HOME/mysql/data/mysql.sock.lock
-podman run -d -p 3306:3306 \
-    --privileged=true \
-    -v $HOME/mysql/my.cnf.d:/etc/my.cnf.d \
-    -v $HOME/mysql/data:/var/lib/mysql \
-    -v $HOME/mysql/backup:/var/mysql/backup \
-    -v $HOME/mysql/log:/var/log/mysql \
-    --name=mysql mysql:8.0
-
-podman run -d -p 3306:3306 \
-    --privileged=true \
-    --name=mysql mysql:8.0
-sleep 10s
 mkdir -p /home/mysql
 podman cp mysql:/etc/my.cnf.d /home/mysql/
 podman cp mysql:/var/lib/mysql /home/mysql/data
@@ -83,6 +64,27 @@ podman run -d -p 3306:3306 \
     -v /home/mysql/data:/var/lib/mysql \
     -v /home/mysql/backup:/var/mysql/backup \
     -v /home/mysql/log:/var/log/mysql \
+    --name=mysql mysql:8.0
+
+podman run -d \
+    --privileged=true \
+    --pod=localhost \
+    --name=mysql mysql:8.0
+sleep 10s
+mkdir -p $HOME/mysql/log
+podman cp mysql:/etc/my.cnf.d $HOME/mysql/
+podman cp mysql:/var/lib/mysql $HOME/mysql/data
+podman cp mysql:/var/mysql/backup $HOME/mysql/
+podman stop mysql
+podman rm mysql
+rm -rf $HOME/mysql/data/mysql.sock.lock
+podman run -d \
+    --privileged=true \
+    --pod=localhost \
+    -v $HOME/mysql/my.cnf.d:/etc/my.cnf.d \
+    -v $HOME/mysql/data:/var/lib/mysql \
+    -v $HOME/mysql/backup:/var/mysql/backup \
+    -v $HOME/mysql/log:/var/log/mysql \
     --name=mysql mysql:8.0
 ```
 
