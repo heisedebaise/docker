@@ -3,6 +3,8 @@
 ## 构建
 ```bash
 docker build -t certbot:base certbot\:base/
+
+podman build -t certbot:base certbot\:base/
 ```
 
 ## 运行
@@ -10,6 +12,10 @@ docker build -t certbot:base certbot\:base/
 docker run -d -p 80:80/tcp -p 443:443/tcp \
     --privileged=true \
     --restart=always \
+    --name=certbot certbot:base
+
+podman run -d \
+    --privileged=true \
     --name=certbot certbot:base
 ```
 
