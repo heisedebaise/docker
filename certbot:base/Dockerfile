@@ -1,6 +1,9 @@
-FROM certbot/certbot:latest
+FROM centos:base
 
-RUN mkdir -p /certbot/cert
+RUN mkdir -p /certbot/cert \
+    && curl -o /certbot/certbot-auto https://dl.eff.org/certbot-auto \
+    && chmod +x /certbot/certbot-auto \
+    && /certbot/certbot-auto --install-only
 
 COPY renew.sh /certbot/
 

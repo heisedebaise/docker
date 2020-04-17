@@ -10,14 +10,13 @@ docker build -t certbot:base certbot\:base/
 docker run -d -p 80:80/tcp -p 443:443/tcp \
     --privileged=true \
     --restart=always \
-    -v /home/cert:/certbot/cert \
     --name=certbot certbot:base
 ```
 
 ## 新证书
 
 ```
-docker exec -it certbot certbot certonly --standalone --register-unsafely-without-email -d {domain}
+docker exec -it certbot certbot-2 certonly --standalone --register-unsafely-without-email -d {domain}
 ```
 
 ## 取消监听端口
