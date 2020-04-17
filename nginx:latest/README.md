@@ -15,7 +15,7 @@ docker run -d -p 80:80 -p 443:443 \
 
 ## 运行（推荐）
 ```bash
-mkdir -p /nginx/conf.d
+mkdir -p /home/nginx/conf.d
 docker run -d -p 80:80 -p 443:443 \
     --privileged=true \
     --restart=always \
