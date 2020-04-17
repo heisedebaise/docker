@@ -24,7 +24,7 @@ do
     if [ `date "+%H:%M:%S"` = 00:00:00 ]; then
         find /certbot/ -maxdepth 1 -type f ! -name "*.sh" -mtime +30 | xargs rm -rf
         today=`date "+%Y-%m-%d"`
-        certbot-2 renew >> /certbot/$today
+        certbot renew >> /certbot/$today
         sync
     fi
 done

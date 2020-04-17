@@ -17,7 +17,7 @@ docker run -d -p 80:80/tcp -p 443:443/tcp \
 ## 新证书
 
 ```
-docker exec -it certbot certbot-2 certonly --standalone --register-unsafely-without-email -d {domain}
+docker exec -it certbot certbot certonly --standalone --register-unsafely-without-email -d {domain}
 ```
 
 ## 取消监听端口
