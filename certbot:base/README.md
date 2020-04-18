@@ -14,7 +14,7 @@ docker run -d -p 80:80/tcp -p 443:443/tcp \
     --restart=always \
     --name=certbot certbot:base
 
-podman run -d \
+podman run -d -p 80:80/tcp -p 443:443/tcp \
     --privileged=true \
     --name=certbot certbot:base
 ```
@@ -22,7 +22,7 @@ podman run -d \
 ## 新证书
 
 ```
-docker exec -it certbot certbot-2 certonly --standalone --register-unsafely-without-email -d {domain}
+docker exec -it certbot certbot certonly --standalone --register-unsafely-without-email -d git.xmhy.ltd
 ```
 
 ## 取消监听端口
