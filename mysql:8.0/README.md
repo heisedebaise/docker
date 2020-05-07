@@ -68,7 +68,7 @@ podman run -d -p 3306:3306 \
 
 podman run -d \
     --privileged=true \
-    --pod=localhost \
+    --pod=local \
     --name=mysql mysql:8.0
 sleep 10s
 mkdir -p $HOME/mysql/log
@@ -80,7 +80,7 @@ podman rm mysql
 rm -rf $HOME/mysql/data/mysql.sock.lock
 podman run -d \
     --privileged=true \
-    --pod=localhost \
+    --pod=local \
     -v $HOME/mysql/my.cnf.d:/etc/my.cnf.d \
     -v $HOME/mysql/data:/var/lib/mysql \
     -v $HOME/mysql/backup:/var/mysql/backup \
