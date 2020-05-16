@@ -2,8 +2,7 @@ FROM centos:base
 
 COPY google-chrome.repo /etc/yum.repos.d/
 
-RUN yum install -y epel-release \
-    && yum install -y google-chrome
+RUN dnf install -y google-chrome
 
 EXPOSE 9222
 

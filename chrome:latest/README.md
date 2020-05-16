@@ -5,6 +5,8 @@
 ## 构建
 ```bash
 docker build -t chrome:latest chrome\:latest/
+
+podman build -t chrome:latest chrome\:latest/
 ```
 
 ## 运行
