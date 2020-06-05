@@ -29,5 +29,5 @@ docker run -d -p 80:80 -p 443:443 \
 ## 新证书
 
 ```
-docker exec -it nginx certbot run --nginx --register-unsafely-without-email -d domain1,domain2
+docker exec -it nginx certbot run --nginx --register-unsafely-without-email -d {domain name}
 ```
