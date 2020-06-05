@@ -7,6 +7,8 @@ RUN dnf install -y epel-release \
     && dnf install -y crontabs python3 nginx \
     && ln -s /bin/python3 /bin/python \
     && ln -s /bin/pip3 /bin/pip \
+    && pip install pip -U \
+    && pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/ \
     && mkdir -p /certbot/cert \
     && curl -o /certbot/certbot-auto https://dl.eff.org/certbot-auto \
     && chmod +x /certbot/certbot-auto \
