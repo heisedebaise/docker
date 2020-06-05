@@ -13,7 +13,7 @@ RUN mkdir -p /certbot/cert \
     && sed -i '38,57s/^/#/' /etc/nginx/nginx.conf \
     && chmod +x /bin/certng \
     && chmod x /bin/certng-renew \
-    && echo '5 16 * * * root /bin/certng-renew' >> /etc/crontab
+    && echo '0 3 * * * root /bin/certng-renew' >> /etc/crontab
 
 EXPOSE 80/tcp 443/tcp
 

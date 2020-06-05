@@ -24,3 +24,9 @@ docker run -d -p 80:80 -p 443:443 \
     -v /home/nginx/log:/var/log/nginx \
     --name=nginx certng:latest
 ```
+
+## 新证书
+
+```
+docker exec -it nginx certbot run --nginx --register-unsafely-without-email -d domain1,domain2
+```
