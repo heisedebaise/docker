@@ -1,5 +1,8 @@
 FROM centos:base
 
+COPY run.sh /bin/certng
+COPY renew.sh /bin/certng-renew
+
 RUN mkdir -p /certbot/cert \
     && curl -o /certbot/certbot-auto https://dl.eff.org/certbot-auto \
     && chmod +x /certbot/certbot-auto \
@@ -8,11 +11,9 @@ RUN mkdir -p /certbot/cert \
     && dnf install -y epel-release crontabs \
     && dnf install -y nginx \
     && sed -i '38,57s/^/#/' /etc/nginx/nginx.conf \
-    && echo '5 16 * * * root certbot renew --nginx >> /var/log/certbot' >> /etc/crontab
-
-COPY run.sh /bin/certng
-
-RUN chmod +x /bin/certng
+    && chmod +x /bin/certng \
+    && chmod x /bin/certng-renew \
+    && echo '5 16 * * * root /bin/certng-renew' >> /etc/crontab
 
 EXPOSE 80/tcp 443/tcp
 
