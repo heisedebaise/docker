@@ -22,6 +22,7 @@ docker run -d -p 80:80 -p 443:443 \
     --restart=always \
     -v /home/nginx/conf.d:/etc/nginx/conf.d \
     -v /home/nginx/log:/var/log/nginx \
+    -v /home/nginx/certbot:/etc/letsencrypt \
     --name=nginx certng:latest
 ```
 
