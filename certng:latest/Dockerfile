@@ -16,7 +16,7 @@ RUN dnf install -y epel-release \
     && ln -s /opt/eff.org/certbot/venv/bin/certbot /bin/certbot \
     && sed -i '38,57s/^/#/' /etc/nginx/nginx.conf \
     && chmod +x /bin/certng \
-    && chmod x /bin/certng-renew \
+    && chmod +x /bin/certng-renew \
     && echo '0 3 * * * root /bin/certng-renew' >> /etc/crontab
 
 EXPOSE 80/tcp 443/tcp
