@@ -1,9 +1,9 @@
 FROM centos:base
 
-RUN yum install -y epel-release \
-    && yum install -y nginx \
+RUN dnf install -y epel-release \
+    && dnf install -y nginx \
     && sed -i '38,57s/^/#/' /etc/nginx/nginx.conf
 
-EXPOSE 80 443
+EXPOSE 80/tcp 443/tcp
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
