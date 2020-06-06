@@ -14,9 +14,6 @@ RUN dnf install -y epel-release \
     && chmod +x /certbot/certbot-auto \
     && /certbot/certbot-auto -n --install-only \
     && ln -s /opt/eff.org/certbot/venv/bin/certbot /bin/certbot \
-    && echo "$(sed 's/^nameserver /#nameserver /g' /etc/resolv.conf)" > /etc/resolv.conf \
-    && echo 'nameserver 8.8.8.8' >> /etc/resolv.conf \
-    && echo 'nameserver 4.4.4.4' >> /etc/resolv.conf \
     && sed -i '38,57s/^/#/' /etc/nginx/nginx.conf \
     && chmod +x /bin/certng \
     && chmod +x /bin/certng-renew \
