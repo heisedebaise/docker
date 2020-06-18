@@ -4,7 +4,7 @@ COPY run.sh /bin/certng
 COPY renew.sh /bin/certng-renew
 
 RUN dnf install -y epel-release \
-    && dnf install -y crontabs python3 nginx \
+    && dnf install -y crontabs python3 openssl nginx \
     && ln -s /bin/python3 /bin/python \
     && ln -s /bin/pip3 /bin/pip \
     && pip install pip -U -i https://mirrors.aliyun.com/pypi/simple/ \
