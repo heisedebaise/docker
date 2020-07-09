@@ -1,3 +1,8 @@
+# install
+
+```bash
+dnf install -y podman
+```
 
 ```
 dnf install podman
