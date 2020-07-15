@@ -6,7 +6,8 @@ do
     sh $file
 done
 
-CATALINA_HOME/bin/startup.sh &
+cd CATALINA_HOME
+bin/startup.sh &
 
 while [[ true ]]
 do
