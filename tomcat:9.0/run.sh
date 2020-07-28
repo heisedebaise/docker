@@ -12,7 +12,10 @@ bin/startup.sh &
 while [[ true ]]
 do
     if [ `date +%H%M%S` eq '000000' ];then
-        sh /data/bin/timer.sh
+        cp /data/logs/catalina.out /data/logs/catalina-`date +%Y%m%d`.out
+        echo > /data/logs/catalina.out
+
+        find /data/logs/ -mtime +7 -exec rm  {} \;
     fi
     sleep 1s
 done
