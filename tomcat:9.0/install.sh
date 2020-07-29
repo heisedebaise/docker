@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version=`curl http://tomcat.apache.org/whichversion.html`
+version=`curl https://tomcat.apache.org/whichversion.html`
 version=${version#*Apache Tomcat Versions}
 version=${version#*9.0.x}
 version=${version#*<td>}
