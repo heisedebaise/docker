@@ -41,6 +41,7 @@ rm -rf /home/mysql/data/mysql.sock.lock
 docker run -d -p 3306:3306 \
     --privileged=true \
     --restart=always \
+    --network=local \
     -v /home/mysql/my.cnf.d:/etc/my.cnf.d \
     -v /home/mysql/data:/var/lib/mysql \
     -v /home/mysql/backup:/var/mysql/backup \
