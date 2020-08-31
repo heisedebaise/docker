@@ -1,4 +1,4 @@
-FROM centos
+FROM docker.io/library/centos
 
 RUN dnf update -y \
     && rm -rf /etc/localtime \
