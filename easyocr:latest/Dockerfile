@@ -1,6 +1,6 @@
 FROM python:3.8
 
-RUN pip install -i https://mirrors.aliyun.com/pypi/simple/ easyocr \
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple easyocr \
     && mkdir -p /easyocr/image
 
 COPY main.py /easyocr/
