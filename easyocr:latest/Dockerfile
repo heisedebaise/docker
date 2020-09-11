@@ -1,6 +1,6 @@
 FROM python:3.8
 
-RUN pip install easyocr \
+RUN pip install git+git://github.com/jaidedai/easyocr.git \
     && mkdir -p /easyocr/image
 
 COPY main.py /easyocr/
