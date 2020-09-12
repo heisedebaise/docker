@@ -1,11 +1,14 @@
 import http.server
 import socketserver
-import easyocr
+import datetime
 import time
+import easyocr
 
 now = time.time()
+print(datetime.datetime.now(), 'loading model [en,ch_sim]')
 reader = easyocr.Reader(['en', 'ch_sim'])
-print('load model [en,ch_sim] in', time.time()-now, 'seconds')
+print(datetime.datetime.now(),
+      'load model [en,ch_sim] in', time.time()-now, 'seconds')
 
 
 class Handler(http.server.BaseHTTPRequestHandler):
@@ -21,5 +24,5 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
 
 with socketserver.TCPServer(("", 8080), Handler) as httpd:
-    print('listening http on 8080')
+    print(datetime.datetime.now(), 'listening http on 8080')
     httpd.serve_forever()
