@@ -1,6 +1,7 @@
 FROM python:3.8
 
-RUN pip install easyocr -i https://mirrors.aliyun.com/pypi/simple/ \
+RUN dnf install -y mesa-libGL-devel \
+    && pip install easyocr -i https://mirrors.aliyun.com/pypi/simple/ \
     && mkdir -p /easyocr/image
 
 COPY main.py /easyocr/
