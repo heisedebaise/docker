@@ -9,19 +9,21 @@ podman build -t easyocr:latest easyocr\:latest/
 
 ## 运行
 ```bash
-docker run -it \
+docker run -d \
     --privileged=true \
+    --restart=always \
     --name=easyocr easyocr:latest
 
-podman run -it \
+podman run -d \
     --privileged=true \
     --name=easyocr easyocr:latest
 ```
 
 ## 运行（推荐）
 ```bash
-docker run -it \
+docker run -d \
     --privileged=true \
+    --restart=always \
     --network=local \
     -v /home/easyocr/model:/root/.EasyOCR/model \
     -v /home/easyocr/image:/easyocr/image \
@@ -29,7 +31,7 @@ docker run -it \
 
 mkdir -p /home/easyocr/model
 mkdir -p /home/easyocr/image
-podman run -it \
+podman run -d \
     --privileged=true \
     --pod=local \
     -v /home/easyocr/model:/root/.EasyOCR/model \
@@ -38,7 +40,7 @@ podman run -it \
 
 mkdir -p $HOME/easyocr/model
 mkdir -p $HOME/easyocr/image
-podman run -it \
+podman run -d \
     --privileged=true \
     --pod=local \
     -v $HOME/easyocr/model:/root/.EasyOCR/model \
