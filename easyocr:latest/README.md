@@ -17,3 +17,8 @@ podman run -it \
     --privileged=true \
     --name=python easyocr:latest
 ```
+
+```
+pip install --upgrade pip  -i https://mirrors.aliyun.com/pypi/simple/
+pip install easyocr -i https://mirrors.aliyun.com/pypi/simple/
+```
