@@ -18,7 +18,30 @@ podman run -it \
     --name=python easyocr:latest
 ```
 
-```
-pip install --upgrade pip  -i https://mirrors.aliyun.com/pypi/simple/
-pip install easyocr -i https://mirrors.aliyun.com/pypi/simple/
+## 运行（推荐）
+```bash
+docker run -it \
+    --privileged=true \
+    --network=local \
+    -v /home/easyocr/model:/root/.EasyOCR/model \
+    -v /home/easyocr/image:/easyocr/image \
+    --name=python easyocr:latest
+
+mkdir -p /home/easyocr/model
+mkdir -p /home/easyocr/image
+podman run -it \
+    --privileged=true \
+    --pod=local \
+    -v /home/easyocr/model:/root/.EasyOCR/model \
+    -v /home/easyocr/image:/easyocr/image \
+    --name=python easyocr:latest
+
+mkdir -p $HOME/easyocr/model
+mkdir -p $HOME/easyocr/image
+podman run -it \
+    --privileged=true \
+    --pod=local \
+    -v $HOME/easyocr/model:/root/.EasyOCR/model \
+    -v $HOME/easyocr/image:/easyocr/image \
+    --name=python easyocr:latest
 ```
