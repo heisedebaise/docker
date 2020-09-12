@@ -1,6 +1,6 @@
 FROM python:3.8
 
-RUN pip install git+git://github.com/jaidedai/easyocr.git -i https://mirrors.aliyun.com/pypi/simple/ \
+RUN pip install git+git://github.com/jaidedai/easyocr.git -i https://pypi.tuna.tsinghua.edu.cn/simple \
     && mkdir -p /easyocr/image
 
 COPY main.py /easyocr/
