@@ -3,7 +3,7 @@
 构建基于`Tomcat-9.0`的Tomcat服务。
 - 当返回`application/json`数据大小超过`4K`时启用`GZIP`压缩。
 - 启动时会自动搜寻并执行`/data/config/*.sh`。
-- `catalina.out`日志文件每天凌晨`4`点自动进行备份，超过`7`天的备份文件会被删除。
+- `catalina.out`日志文件每天`00:00:00`点自动进行备份，超过`7`天的备份文件会被删除。
 
 ## 构建
 ```bash
@@ -26,11 +26,12 @@ podman run -d -p 8080:8080 \
 
 ## 运行（推荐）
 ```bash
-docker run -d -p 8080:8080 \
+docker run -d \
     --privileged=true \
     --restart=always \
     --memory=4g \
     --memory-swappiness=0 \
+    --network=local \
     -v /home/tomcat/config:/data/config \
     -v /home/tomcat/webapps:/data/webapps \
     -v /home/tomcat/logs:/data/logs \
@@ -39,10 +40,11 @@ docker run -d -p 8080:8080 \
 mkdir -p /home/tomcat/config
 mkdir -p /home/tomcat/webapps
 mkdir -p /home/tomcat/logs
-podman run -d -p 8080:8080 \
+podman run -d \
     --privileged=true \
     --memory=4g \
     --memory-swappiness=0 \
+    --pod=local \
     -v /home/tomcat/config:/data/config \
     -v /home/tomcat/webapps:/data/webapps \
     -v /home/tomcat/logs:/data/logs \
