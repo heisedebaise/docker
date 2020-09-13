@@ -26,7 +26,7 @@ podman run -d -p 3306:3306 \
 
 ## 运行（推荐）
 ```bash
-docker run -d -p 3306:3306 \
+docker run -d \
     --privileged=true \
     --restart=always \
     --name=mysql mysql:8.0
@@ -38,7 +38,7 @@ docker cp mysql:/var/mysql/backup /home/mysql/
 docker stop mysql
 docker rm mysql
 rm -rf /home/mysql/data/mysql.sock.lock
-docker run -d -p 3306:3306 \
+docker run -d \
     --privileged=true \
     --restart=always \
     --network=local \
@@ -48,7 +48,7 @@ docker run -d -p 3306:3306 \
     -v /home/mysql/log:/var/log/mysql \
     --name=mysql mysql:8.0
 
-podman run -d -p 3306:3306 \
+podman run -d \
     --privileged=true \
     --name=mysql mysql:8.0
 sleep 10s
@@ -59,8 +59,9 @@ podman cp mysql:/var/mysql/backup /home/mysql/
 podman stop mysql
 podman rm mysql
 rm -rf /home/mysql/data/mysql.sock.lock
-podman run -d -p 3306:3306 \
+podman run -d \
     --privileged=true \
+    --pod=local \
     -v /home/mysql/my.cnf.d:/etc/my.cnf.d \
     -v /home/mysql/data:/var/lib/mysql \
     -v /home/mysql/backup:/var/mysql/backup \
