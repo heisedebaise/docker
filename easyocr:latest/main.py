@@ -5,10 +5,10 @@ import time
 import easyocr
 
 now = time.time()
-print(datetime.datetime.now(), 'loading model [en,ch_sim,ch_tra]')
-reader = easyocr.Reader(['en', 'ch_sim', 'ch_tra'])
+print(datetime.datetime.now(), 'loading model [en,ch_sim]')
+reader = easyocr.Reader(['en', 'ch_sim'])
 print(datetime.datetime.now(),
-      'load model [en,ch_sim,ch_tra] in', time.time()-now, 'seconds')
+      'load model [en,ch_sim] in', time.time()-now, 'seconds')
 
 
 class Handler(http.server.BaseHTTPRequestHandler):
