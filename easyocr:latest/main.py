@@ -1,14 +1,18 @@
+import logging
 import http.server
 import socketserver
 import datetime
 import time
 import easyocr
 
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+                    datefmt='%a, %d %b %Y %H:%M:%S', filename='/easyocr/log', filemode='w')
+
 now = time.time()
-print(datetime.datetime.now(), 'loading model [en,ch_sim]')
+logging.info(datetime.datetime.now(), 'loading model [en,ch_sim]')
 reader = easyocr.Reader(['en', 'ch_sim'])
-print(datetime.datetime.now(),
-      'load model [en,ch_sim] in', time.time()-now, 'seconds')
+logging.info(datetime.datetime.now(),
+             'load model [en,ch_sim] in', time.time()-now, 'seconds')
 
 
 class Handler(http.server.BaseHTTPRequestHandler):
@@ -24,5 +28,5 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
 
 with socketserver.TCPServer(("", 8080), Handler) as httpd:
-    print(datetime.datetime.now(), 'listening http on 8080')
+    logging.info(datetime.datetime.now(), 'listening http on 8080')
     httpd.serve_forever()
