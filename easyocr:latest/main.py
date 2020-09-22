@@ -19,16 +19,22 @@ class Handler(http.server.BaseHTTPRequestHandler):
         file = '/easyocr/image'+self.path
         t = time.time()
         try:
-            text = reader.readtext(file)
+            list = reader.readtext(file)
+            text = ''
+            for element in list:
+                if len(element) > 1:
+                    text += ','+element[1]
+            if len(text) > 0:
+                text = text[1:]
         except Exception as e:
             logging.warn(e)
-        logging.debug('read text from %s=>%s duration=%fseconds',
-                      file,  text, time.time()-t)
+        logging.debug('read text from %s=>%s=>%s duration=%fseconds',
+                      file, list,  text, time.time()-t)
 
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
         self.end_headers()
-        self.wfile.write(str(text).encode('utf-8'))
+        self.wfile.write(text.encode('utf-8'))
 
         return
 
