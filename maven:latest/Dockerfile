@@ -1,7 +1,6 @@
 FROM java:latest
 
-RUN dnf install -y git \
-    && mkdir -p /data/work \
+RUN mkdir -p /data/work \
     && link=`curl http://maven.apache.org/download.cgi` \
     && link=${link#*<td>Binary tar.gz archive</td>} \
     && link=${link#*<a href=} \
@@ -11,6 +10,7 @@ RUN dnf install -y git \
     && curl -o /data/$name $link \
     && tar -zxf /data/$name -C data/ \
     && name=${name%-*} \
+    && sed -i '/if [ -z "\$MAVEN_SKIP_RC" ]/i\MAVEN_OPTS="-Dfile.encoding=UTF-8"\n' /data/$name/bin/mvn \
     && ln -s /data/$name/bin/mvn /bin/
 
 VOLUME [ "/root/.m2", "/data/work" ]
