@@ -1,9 +1,14 @@
 #!/bin/bash
 
-git add **/Dockerfile
-git add **/*.md
-git add **/*.sh
-git add **/*.py
+for file in `ls`
+do
+    if [[ $file =~ ":" ]]
+    then
+        git add $file
+    fi
+done
+
+git add k8s
 git add *.md
 git add *.sh
 git commit -m dev
