@@ -11,8 +11,7 @@ RUN dnf install -y git \
     && curl -o /data/$name $link \
     && tar -zxf /data/$name -C data/ \
     && name=${name%-*} \
-    && ln -s /data/$name/bin/mvn /bin/ \
-    && sed -i '/if \[ -z "\$MAVEN_SKIP_RC" \]/i\MAVEN_OPTS="-Dfile.encoding=UTF-8"\n' /bin/mvn
+    && ln -s /data/$name/bin/mvn /bin/
 
 VOLUME [ "/root/.m2", "/data/work" ]
 
