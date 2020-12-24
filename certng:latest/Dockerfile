@@ -19,6 +19,8 @@ RUN dnf install -y epel-release \
     && chmod +x /bin/certng-renew \
     && echo '0 3 * * * root /bin/certng-renew' >> /etc/crontab
 
+COPY to-https.html /certbot/to-https/index.html
+
 EXPOSE 80/tcp 443/tcp
 
 CMD [ "/bin/certng" ]
