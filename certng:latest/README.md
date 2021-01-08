@@ -78,7 +78,7 @@ docker exec -it nginx certbot run --nginx --register-unsafely-without-email -d {
 docker exec -it nginx certbot delete
 ```
 
-## conf
+## conf.d/{name}.conf
 
 ```
 server {
