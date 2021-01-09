@@ -78,12 +78,12 @@ docker exec -it nginx certbot run --nginx --register-unsafely-without-email -d {
 docker exec -it nginx certbot delete
 ```
 
-## conf.d/{name}.conf
+## conf.d/{domain name}.conf
 
 ```
 server {
     listen 80;
-    server_name {name};
+    server_name {domain name};
 
     error_page 404 /;
 
@@ -94,11 +94,11 @@ server {
 
 server {
     listen 443 ssl;
-    server_name {name};
+    server_name {domain name};
 
     ssl                  on;
-    ssl_certificate      /etc/letsencrypt/live/{name}/fullchain.pem;
-    ssl_certificate_key  /etc/letsencrypt/live/{name}/privkey.pem;
+    ssl_certificate      /etc/letsencrypt/live/{domain name}/fullchain.pem;
+    ssl_certificate_key  /etc/letsencrypt/live/{domain name}/privkey.pem;
     ssl_session_timeout  5m;
     ssl_protocols  TLSv1.2 TLSv1.3;
     ssl_ciphers  HIGH:!aNULL:!MD5;
