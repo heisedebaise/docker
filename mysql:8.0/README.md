@@ -97,7 +97,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
 
 ## 创建用户
 ```
-CREATE USER 'root'@'172.17.0.%' IDENTIFIED BY 'root';
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.17.0.%';
+CREATE USER 'root'@'172.%' IDENTIFIED BY 'root';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.%';
 FLUSH PRIVILEGES;
 ```

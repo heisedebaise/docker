@@ -1,12 +1,10 @@
 # install
 
-```bash
+```
 dnf install -y podman
 ```
 
-```
-dnf install podman
-```
+# create pod
 
 ```
 podman pod create \
