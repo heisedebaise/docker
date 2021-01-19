@@ -10,8 +10,16 @@ systemctl enable docker
 systemctl restart docker
 ```
 
-# network
+## network
 
 ```
 docker network create local
+```
+
+## mirror
+
+```
+echo '{
+  "registry-mirrors": ["https://docker.mirrors.ustc.edu.cn"]
+}' > /etc/docker/daemon.json
 ```
