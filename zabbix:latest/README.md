@@ -53,14 +53,15 @@ systemctl start zabbix-agent
 
 ```
 cp /etc/zabbix/zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf.o
-sed -i '/# StartAgents/a\StartAgents=0' /etc/zabbix/zabbix_agentd.conf
+sed -i 's/^Server=127.0.0.1/Server=172.18.0.0\/24/g' /etc/zabbix/zabbix_agentd.conf
+sed -i '/^ServerActive=127.0.0.1/d' /etc/zabbix/zabbix_agentd.conf
 sed -i 's/Hostname=Zabbix server/Hostname=zabbix agent/g' /etc/zabbix/zabbix_agentd.conf
 systemctl restart zabbix-agent
 ```
 
 ## gpu
 
-## agent
+### agent
 
 ```
 # https://github.com/plambe/zabbix-nvidia-smi-multi-gpu/
@@ -72,10 +73,30 @@ chmod +x /etc/zabbix/scripts/get_gpus_info.sh
 systemctl restart zabbix-agent
 ```
 
-## web
+### web
 
 ```
 Configuration > Templates > Import << zabbix-nvidia-smi-multi-gpu/zbx_nvidia-smi-multi-gpu.xml
 Hosts > {node} > Templates > Link new templates > Template Nvidia GPUs Performance
+Update
+```
+
+## cpu temp
+
+### agent
+
+```
+# https://github.com/B1T0/zabbix-basic-cpu-temperature
+pacman -S lm_sensors
+git clone https://github.com/B1T0/zabbix-basic-cpu-temperature
+cat zabbix-basic-cpu-temperature/userparameter_cputemp.conf >> /etc/zabbix/zabbix_agentd.conf
+systemctl restart zabbix-agent
+```
+
+### web
+
+```
+Configuration > Templates > Import << zabbix-basic-cpu-temperature/Template basicCPUTemp.xml
+Hosts > {node} > Templates > Link new templates > Template basicCPUTemp
 Update
 ```
