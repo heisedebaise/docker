@@ -15,13 +15,13 @@ docker run -d -p 10051:10051 \
 ```
 
 ```
-zabbix_get -s 172.0.0.1 -p 10050 -k "system.cpu.load[all,avg1]"
+zabbix_get -s 172.18.0.1 -p 10050 -k "system.cpu.load[all,avg1]"
 ```
 
 ## web
 
 ```
-docker run -d -p80:8080 \
+docker run -d -p 8080:8080 \
     --privileged=true \
     --restart=always \
     --network=local \
@@ -47,14 +47,14 @@ docker run -d -p 10050:10050 \
 
 ```
 pacman -S zabbix-agent
-systemctl enbale zabbix-agent
+systemctl enable zabbix-agent
 systemctl start zabbix-agent
 ```
 
 ```
-sed -i 's/Server=127.0.0.1/Server=172.18.0.2/g' /etc/zabbix/zabbix_agentd.conf
-sed -i 's/ServerActive=127.0.0.1/ServerActive=172.18.0.2/g' /etc/zabbix/zabbix_agentd.conf
-sed -i 's/Hostname=Zabbix server/Hostname=127.0.0.1/g' /etc/zabbix/zabbix_agentd.conf
+cp /etc/zabbix/zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf.o
+sed -i '/# StartAgents/a\StartAgents=0' /etc/zabbix/zabbix_agentd.conf
+sed -i 's/Hostname=Zabbix server/Hostname=zabbix agent/g' /etc/zabbix/zabbix_agentd.conf
 systemctl restart zabbix-agent
 ```
 
