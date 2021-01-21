@@ -61,6 +61,10 @@ systemctl restart zabbix-agent
 
 ## gpu
 
+```
+pacman -S nvidia
+```
+
 ### agent
 
 ```
@@ -83,11 +87,14 @@ Update
 
 ## cpu temp
 
+```
+pacman -S lm_sensors
+```
+
 ### agent
 
 ```
 # https://github.com/B1T0/zabbix-basic-cpu-temperature
-pacman -S lm_sensors
 git clone https://github.com/B1T0/zabbix-basic-cpu-temperature
 cat zabbix-basic-cpu-temperature/userparameter_cputemp.conf >> /etc/zabbix/zabbix_agentd.conf
 systemctl restart zabbix-agent
