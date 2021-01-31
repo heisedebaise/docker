@@ -90,6 +90,7 @@ Update
 ```
 pacman -S lm_sensors
 sensors-detect
+sensors
 ```
 
 ### agent
