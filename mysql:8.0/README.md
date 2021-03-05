@@ -52,7 +52,7 @@ podman run -d \
     --privileged=true \
     --name=mysql mysql:8.0
 sleep 10s
-mkdir -p /home/mysql
+mkdir -p /home/mysql/log
 podman cp mysql:/etc/my.cnf.d /home/mysql/
 podman cp mysql:/var/lib/mysql /home/mysql/data
 podman cp mysql:/var/mysql/backup /home/mysql/

@@ -40,7 +40,7 @@ mkdir -p /home/nginx/certbot
 podman run -d -p 80:80 -p 443:443 \
     --privileged=true \
     --restart=always \
-    --network=local \
+    --pod=local \
     -v /home/nginx/conf.d:/etc/nginx/conf.d \
     -v /home/nginx/log:/var/log/nginx \
     -v /home/nginx/certbot:/etc/letsencrypt \
@@ -52,7 +52,7 @@ mkdir -p $HOME/nginx/certbot
 podman run -d -p 80:80 -p 443:443 \
     --privileged=true \
     --restart=always \
-    --network=local \
+    --pod=local \
     -v $HOME/nginx/conf.d:/etc/nginx/conf.d \
     -v $HOME/nginx/log:/var/log/nginx \
     -v $HOME/nginx/certbot:/etc/letsencrypt \
