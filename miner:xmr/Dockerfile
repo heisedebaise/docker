@@ -1,7 +1,9 @@
 FROM centos:base
 
-COPY xmrig-6.10.0 /
+RUN mkdir -p /xmrig
 
-RUN chmod +x /xmrig-6.10.0/run.sh
+COPY xmrig-6.10.0/* /xmrig/
 
-CMD [ "/xmrig-6.10.0/run.sh" ]
+RUN chmod +x /xmrig/run.sh
+
+CMD [ "/xmrig/run.sh" ]
