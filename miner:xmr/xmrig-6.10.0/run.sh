@@ -1,7 +1,5 @@
 #!/bin/bash
 
-sleep 1d
-
 cd /xmrig-6.10.0
 ./xmrig
 
