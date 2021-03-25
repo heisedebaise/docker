@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /xmrig-6.10.0
+cd /xmrig
 ./xmrig
 
 sleep 8192d
