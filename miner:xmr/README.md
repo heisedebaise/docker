@@ -14,7 +14,7 @@ docker run -d \
     --privileged=true \
     --restart=always \
     --cpus=1 \
-    --memory=1073741824 \
+    --memory=1g \
     --name=xmr miner:xmr
 
 podman run -d \
