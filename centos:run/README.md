@@ -9,12 +9,12 @@ podman build -t centos:run centos\:run/
 
 ## 运行
 ```bash
-docker run -it \
+docker run -d \
     --privileged=true \
     --network=local \
     --name=centos centos:run
 
-podman run -it \
+podman run -d \
     --privileged=true \
     --pod=local \
     --name=centos centos:run
