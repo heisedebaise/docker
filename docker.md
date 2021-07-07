@@ -3,7 +3,9 @@
 ## centos
 
 ```bash
-dnf config-manager --add-repo=https://download.docker.com/linux/fedora/docker-ce.repo
+dnf remove -y podman
+
+dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
 
 dnf install -y docker-ce
 systemctl enable docker
