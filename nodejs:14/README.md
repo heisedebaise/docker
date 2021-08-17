@@ -36,3 +36,9 @@ podman run -it \
     --name=nodejs \
     nodejs:14
 ```
+
+## puppeteer
+
+```
+docker exec -it nodejs dnf install -y nss atk at-spi2-atk cups libdrm libXcomposite libXdamage mesa-libgbm pango alsa-lib libxshmfence
+```
