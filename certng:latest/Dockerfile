@@ -3,17 +3,11 @@ FROM centos:base
 COPY run.sh /bin/certng
 COPY renew.sh /bin/certng-renew
 
-RUN dnf install -y epel-release \
-    && dnf install -y crontabs python3 nginx \
-    && ln -s /bin/python3 /bin/python \
-    && ln -s /bin/pip3 /bin/pip \
-    && pip install pip -U -i https://mirrors.aliyun.com/pypi/simple/ \
-    && pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/ \
-    && mkdir -p /certbot/cert \
-    && curl -o /certbot/certbot-auto https://dl.eff.org/certbot-auto \
-    && chmod +x /certbot/certbot-auto \
-    && /certbot/certbot-auto -n --install-only \
-    && ln -s /opt/eff.org/certbot/venv/bin/certbot /bin/certbot \
+RUN dnf install -y crontabs nginx python3 augeas-libs \
+    && python3 -m venv /opt/certbot/ \
+    && /opt/certbot/bin/pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple/ \
+    && /opt/certbot/bin/pip install certbot certbot-nginx -i https://pypi.tuna.tsinghua.edu.cn/simple/ \
+    && ln -s /opt/certbot/bin/certbot /usr/bin/certbot \
     && sed -i '38,57s/^/#/' /etc/nginx/nginx.conf \
     && chmod +x /bin/certng \
     && chmod +x /bin/certng-renew \
