@@ -69,7 +69,7 @@ docker exec -it nginx nginx -s reload
 ## 新证书
 
 ```
-docker exec -it nginx certbot run --nginx --register-unsafely-without-email -d {domain name}
+docker exec -it nginx certbot --nginx --register-unsafely-without-email -d {domain name}
 ```
 
 ## 删除证书
