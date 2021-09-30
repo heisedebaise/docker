@@ -14,3 +14,5 @@ RUN mkdir -p /data/work \
     && ln -s /data/$name/bin/mvn /bin/
 
 VOLUME [ "/root/.m2", "/data/work" ]
+
+CMD [ "sleep", "1024d" ]
