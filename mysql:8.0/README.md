@@ -17,11 +17,13 @@ podman build -t mysql:8.0 mysql\:8.0/
 docker run -d -p 3306:3306 \
     --privileged=true \
     --restart=always \
-    --name=mysql mysql:8.0
+    --name=mysql \
+    mysql:8.0
 
 podman run -d -p 3306:3306 \
     --privileged=true \
-    --name=mysql mysql:8.0
+    --name=mysql \
+    mysql:8.0
 ```
 
 ## 运行（推荐）
@@ -29,7 +31,8 @@ podman run -d -p 3306:3306 \
 docker run -d \
     --privileged=true \
     --restart=always \
-    --name=mysql mysql:8.0
+    --name=mysql \
+    mysql:8.0
 sleep 10s
 mkdir -p /home/mysql
 docker cp mysql:/etc/my.cnf.d /home/mysql/
@@ -46,11 +49,13 @@ docker run -d \
     -v /home/mysql/data:/var/lib/mysql \
     -v /home/mysql/backup:/var/mysql/backup \
     -v /home/mysql/log:/var/log/mysql \
-    --name=mysql mysql:8.0
+    --name=mysql \
+    mysql:8.0
 
 podman run -d \
     --privileged=true \
-    --name=mysql mysql:8.0
+    --name=mysql \
+    mysql:8.0
 sleep 10s
 mkdir -p /home/mysql/log
 podman cp mysql:/etc/my.cnf.d /home/mysql/
@@ -66,12 +71,14 @@ podman run -d \
     -v /home/mysql/data:/var/lib/mysql \
     -v /home/mysql/backup:/var/mysql/backup \
     -v /home/mysql/log:/var/log/mysql \
-    --name=mysql mysql:8.0
+    --name=mysql \
+    mysql:8.0
 
 podman run -d \
     --privileged=true \
     --pod=local \
-    --name=mysql mysql:8.0
+    --name=mysql \
+    mysql:8.0
 sleep 10s
 mkdir -p $HOME/mysql/log
 podman cp mysql:/etc/my.cnf.d $HOME/mysql/
@@ -87,7 +94,8 @@ podman run -d \
     -v $HOME/mysql/data:/var/lib/mysql \
     -v $HOME/mysql/backup:/var/mysql/backup \
     -v $HOME/mysql/log:/var/log/mysql \
-    --name=mysql mysql:8.0
+    --name=mysql \
+    mysql:8.0
 ```
 
 ## 修改密码
