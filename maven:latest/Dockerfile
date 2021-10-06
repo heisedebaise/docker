@@ -8,7 +8,7 @@ RUN mkdir -p /data/work \
     && curl -o /data/apache-maven-$version-bin.tar.gz https://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/$version/binaries/apache-maven-$version-bin.tar.gz \
     && tar -zxf /data/apache-maven-$version-bin.tar.gz -C /data/ \
     && sed -i '/"\$MAVEN_SKIP_RC"/i\MAVEN_OPTS="-Dfile.encoding=UTF-8"\n' /data/apache-maven-$version/bin/mvn \
-    && ln -s /data/$name/bin/mvn /bin/
+    && ln -s /data/apache-maven-$version/bin/mvn /bin/
 
 VOLUME [ "/root/.m2", "/data/work" ]
 
