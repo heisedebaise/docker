@@ -15,11 +15,13 @@ podman build -t certng:latest certng\:latest/
 docker run -d -p 80:80 -p 443:443 \
     --privileged=true \
     --restart=always \
-    --name=nginx certng:latest
+    --name=nginx \
+    certng:latest
 
 podman run -d -p 80:80 -p 443:443 \
     --privileged=true \
-    --name=nginx certng:latest
+    --name=nginx \
+    certng:latest
 ```
 
 ## 运行（推荐）
@@ -32,7 +34,8 @@ docker run -d -p 80:80 -p 443:443 \
     -v /home/nginx/conf.d:/etc/nginx/conf.d \
     -v /home/nginx/log:/var/log/nginx \
     -v /home/nginx/certbot:/etc/letsencrypt \
-    --name=nginx certng:latest
+    --name=nginx \
+    certng:latest
 
 mkdir -p /home/nginx/conf.d
 mkdir -p /home/nginx/log
@@ -44,7 +47,8 @@ podman run -d -p 80:80 -p 443:443 \
     -v /home/nginx/conf.d:/etc/nginx/conf.d \
     -v /home/nginx/log:/var/log/nginx \
     -v /home/nginx/certbot:/etc/letsencrypt \
-    --name=nginx certng:latest
+    --name=nginx \
+    certng:latest
 
 mkdir -p $HOME/nginx/conf.d
 mkdir -p $HOME/nginx/log
@@ -56,7 +60,8 @@ podman run -d -p 80:80 -p 443:443 \
     -v $HOME/nginx/conf.d:/etc/nginx/conf.d \
     -v $HOME/nginx/log:/var/log/nginx \
     -v $HOME/nginx/certbot:/etc/letsencrypt \
-    --name=nginx certng:latest
+    --name=nginx \
+    certng:latest
 ```
 
 ## 更新配置
