@@ -38,7 +38,7 @@ mkdir -p /home/mysql
 docker cp mysql:/etc/my.cnf.d /home/mysql/
 docker cp mysql:/var/lib/mysql /home/mysql/data
 docker cp mysql:/var/mysql/backup /home/mysql/
-docker stop mysql
+docker stop -t 1 mysql
 docker rm mysql
 rm -rf /home/mysql/data/mysql.sock.lock
 docker run -d \
@@ -61,7 +61,7 @@ mkdir -p /home/mysql/log
 podman cp mysql:/etc/my.cnf.d /home/mysql/
 podman cp mysql:/var/lib/mysql /home/mysql/data
 podman cp mysql:/var/mysql/backup /home/mysql/
-podman stop mysql
+podman stop -t 1 mysql
 podman rm mysql
 rm -rf /home/mysql/data/mysql.sock.lock
 podman run -d \
@@ -84,7 +84,7 @@ mkdir -p $HOME/mysql/log
 podman cp mysql:/etc/my.cnf.d $HOME/mysql/
 podman cp mysql:/var/lib/mysql $HOME/mysql/data
 podman cp mysql:/var/mysql/backup $HOME/mysql/
-podman stop mysql
+podman stop -t 1 mysql
 podman rm mysql
 rm -rf $HOME/mysql/data/mysql.sock.lock
 podman run -d \
