@@ -15,9 +15,11 @@ podman build -t java:latest java\:latest/
 ```bash
 docker run -it \
     --privileged=true \
-    --name=java java:latest
+    --name=java \
+    java:latest
 
 podman run -it \
     --privileged=true \
-    --name=java java:latest
+    --name=java \
+    java:latest
 ```

@@ -52,12 +52,14 @@ podman run -d \
 
 mkdir -p $HOME/tomcat/config
 mkdir -p $HOME/tomcat/webapps
+mkdir -p $HOME/tomcat/upload
 mkdir -p $HOME/tomcat/logs
 podman run -d \
     --privileged=true \
     --pod=local \
     -v $HOME/tomcat/config:/data/config \
     -v $HOME/tomcat/webapps:/data/webapps \
+    -v $HOME/tomcat/upload:/data/webapps/ROOT/upload \
     -v $HOME/tomcat/logs:/data/logs \
     --name=tomcat tomcat:9.0
 ```

@@ -14,10 +14,12 @@ podman build -t centos:base centos\:base/
 docker run -it \
     --privileged=true \
     --network=local \
-    --name=centos centos:base
+    --name=centos \
+    centos:base
 
 podman run -it \
     --privileged=true \
     --pod=local \
-    --name=centos centos:base
+    --name=centos \
+    centos:base
 ```
