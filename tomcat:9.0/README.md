@@ -17,11 +17,13 @@ podman build -t tomcat:9.0 tomcat\:9.0/
 docker run -d -p 8080:8080 \
     --privileged=true \
     --restart=always \
-    --name=tomcat tomcat:9.0
+    --name=tomcat \
+    tomcat:9.0
 
 podman run -d -p 8080:8080 \
     --privileged=true \
-    --name=tomcat tomcat:9.0
+    --name=tomcat \
+    tomcat:9.0
 ```
 
 ## 运行（推荐）
@@ -35,7 +37,8 @@ docker run -d \
     -v /home/tomcat/config:/data/config \
     -v /home/tomcat/webapps:/data/webapps \
     -v /home/tomcat/logs:/data/logs \
-    --name=tomcat tomcat:9.0
+    --name=tomcat \
+    tomcat:9.0
 
 mkdir -p /home/tomcat/config
 mkdir -p /home/tomcat/webapps
@@ -48,7 +51,8 @@ podman run -d \
     -v /home/tomcat/config:/data/config \
     -v /home/tomcat/webapps:/data/webapps \
     -v /home/tomcat/logs:/data/logs \
-    --name=tomcat tomcat:9.0
+    --name=tomcat \
+    tomcat:9.0
 
 mkdir -p $HOME/tomcat/config
 mkdir -p $HOME/tomcat/webapps
@@ -61,7 +65,8 @@ podman run -d \
     -v $HOME/tomcat/webapps:/data/webapps \
     -v $HOME/tomcat/upload:/data/webapps/ROOT/upload \
     -v $HOME/tomcat/logs:/data/logs \
-    --name=tomcat tomcat:9.0
+    --name=tomcat \
+    tomcat:9.0
 ```
 
 > 建议设置Tomcat启动时的`-Xms`&`-Xmx`参数值，默认最大内存通常只有总内存的`1/4`；可通过`java -XX:+PrintFlagsFinal -version | grep -iE 'HeapSize|PermSize|ThreadStackSize'`查看默认内存配置值。
