@@ -23,3 +23,38 @@ podman run -it \
     --name=java \
     java:latest
 ```
+
+## install
+
+```
+#!/bin/bash
+
+version=17
+dnf install -y java-$version-openjdk-devel
+rm -f /etc/alternatives/java
+rm -f /etc/alternatives/javac
+ln -s /usr/lib/jvm/java-$version/bin/java /etc/alternatives/
+ln -s /usr/lib/jvm/java-$version/bin/javac /etc/alternatives/
+rm -rf /usr/lib/jvm/java
+ln -s /etc/alternatives/java_sdk_$version /usr/lib/jvm/java
+
+java -version
+javac -version
+```
+
+
+
+```
+#!/bin/bash
+
+version=16
+rm -f /etc/alternatives/java
+rm -f /etc/alternatives/javac
+ln -s /usr/lib/jvm/java-$version/bin/java /etc/alternatives/
+ln -s /usr/lib/jvm/java-$version/bin/javac /etc/alternatives/
+rm -rf /usr/lib/jvm/java
+ln -s /etc/alternatives/java_sdk_$version /usr/lib/jvm/java
+
+java -version
+javac -version
+```
