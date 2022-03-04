@@ -1,4 +1,4 @@
 #!/bin/sh
 
 cd CATALINA_HOME
-bin/startup.sh &
+bin/startup.sh
