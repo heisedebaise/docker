@@ -1,13 +1,12 @@
 FROM java:17
 
-RUN mkdir -p /data/bin
+COPY *.sh /
 
-COPY *.sh /data/bin/
-
-RUN chmod +x /data/bin/*.sh \
- && source /data/bin/install.sh \
- && rm -rf /data/bin/install.sh
+RUN apk add curl \
+ && chmod +x install.sh \
+ && sh install.sh \
+ && rm -rf install.sh
 
 EXPOSE 8080
 
-CMD ["/data/bin/run.sh"]
+CMD ["/tomcat/bin/run.sh"]

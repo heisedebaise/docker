@@ -1,7 +1,5 @@
 #!/bin/sh
 
-apk add curl
-
 version=`curl https://tomcat.apache.org/whichversion.html`
 version=${version#*Apache Tomcat Versions}
 version=${version#*10.0.x}
@@ -16,12 +14,11 @@ sed -i '/# OS specific support/i\export LC_ALL="zh_CN.UTF-8"' bin/catalina.sh
 sed -i '/# OS specific support/i\JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Dfile.encoding=UTF-8"\n' bin/catalina.sh
 sed -i 's/>> "$CATALINA_OUT" 2>&1 "&"/>> "$CATALINA_OUT" 2>\&1/g' bin/catalina.sh
 sed -i 's/port="8080"/port="8080"\n               compression="on"\n               compressionMinSize="4096"\n               compressableMimeType="application\/json"\n              /' conf/server.xml
+
 rm -rf webapps
 rm -rf logs
-mkdir -p /data/config
-mkdir -p /data/webapps
-mkdir -p /data/logs
-ln -s /data/webapps
-ln -s /data/logs
 
-sed -i "s,CATALINA_HOME,/apache-tomcat-$version," /data/bin/run.sh
+mv /run.sh bin/
+chmod +x bin/run.sh
+
+ln -s /apache-tomcat-$version /tomcat
