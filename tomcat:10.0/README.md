@@ -2,7 +2,6 @@
 
 构建基于`Tomcat-10.0`的Tomcat服务。
 - 当返回`application/json`数据大小超过`4K`时启用`GZIP`压缩。
-- 启动时会自动搜寻并执行`/data/config/*.sh`。
 - `catalina.out`日志文件每天`00:00:00`点自动进行备份，超过`7`天的备份文件会被删除。
 
 ## 构建
