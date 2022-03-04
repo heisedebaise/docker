@@ -30,12 +30,10 @@ podman run -d -p 8080:8080 \
 docker run -d \
     --privileged=true \
     --restart=always \
-    --memory=4g \
     --memory-swappiness=0 \
     --network=local \
-    -v /home/tomcat/config:/data/config \
-    -v /home/tomcat/webapps:/data/webapps \
-    -v /home/tomcat/logs:/data/logs \
+    -v /home/tomcat/webapps:/tomcat/webapps \
+    -v /home/tomcat/logs:/tomcat/logs \
     --name=tomcat \
     tomcat:10.0
 
@@ -44,26 +42,21 @@ mkdir -p /home/tomcat/webapps
 mkdir -p /home/tomcat/logs
 podman run -d \
     --privileged=true \
-    --memory=4g \
     --memory-swappiness=0 \
     --pod=local \
-    -v /home/tomcat/config:/data/config \
-    -v /home/tomcat/webapps:/data/webapps \
-    -v /home/tomcat/logs:/data/logs \
+    -v /home/tomcat/webapps:/tomcat/webapps \
+    -v /home/tomcat/logs:/tomcat/logs \
     --name=tomcat \
     tomcat:10.0
 
-mkdir -p $HOME/tomcat/config
 mkdir -p $HOME/tomcat/webapps
 mkdir -p $HOME/tomcat/upload
 mkdir -p $HOME/tomcat/logs
 podman run -d \
     --privileged=true \
     --pod=local \
-    -v $HOME/tomcat/config:/data/config \
-    -v $HOME/tomcat/webapps:/data/webapps \
-    -v $HOME/tomcat/upload:/data/webapps/ROOT/upload \
-    -v $HOME/tomcat/logs:/data/logs \
+    -v $HOME/tomcat/webapps:/tomcat/webapps \
+    -v $HOME/tomcat/logs:/tomcat/logs \
     --name=tomcat \
     tomcat:10.0
 ```
