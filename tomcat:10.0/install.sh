@@ -1,5 +1,7 @@
 #!/bin/bash
 
+apk add curl
+
 version=`curl https://tomcat.apache.org/whichversion.html`
 version=${version#*Apache Tomcat Versions}
 version=${version#*10.0.x}
