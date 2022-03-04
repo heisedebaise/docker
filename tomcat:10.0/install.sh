@@ -16,7 +16,9 @@ sed -i 's/>> "$CATALINA_OUT" 2>&1 "&"/>> "$CATALINA_OUT" 2>\&1/g' bin/catalina.s
 sed -i 's/port="8080"/port="8080"\n               compression="on"\n               compressionMinSize="4096"\n               compressableMimeType="application\/json"\n              /' conf/server.xml
 
 rm -rf webapps
+mkdir -p webapps
 rm -rf logs
+mkdir -p logs
 
 mv /run.sh bin/
 chmod +x bin/run.sh
