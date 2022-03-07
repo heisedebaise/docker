@@ -16,3 +16,12 @@ sed -i 's/mirrors.aliyun.com/mirrors.cloud.aliyuncs.com/g' /etc/yum.repos.d/epel
 dnf clean all
 dnf makecache
 ```
+
+tsinghua
+
+```
+sudo sed -e 's|^mirrorlist=|#mirrorlist=|g' \
+         -e 's|^#baseurl=http://mirror.centos.org/$contentdir|baseurl=https://mirrors.tuna.tsinghua.edu.cn/centos|g' \
+         -i.bak \
+         /etc/yum.repos.d/CentOS-*.repo
+```
