@@ -22,12 +22,12 @@
             <id>jdk</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
-                <jdk>14</jdk>
+                <jdk>17</jdk>
             </activation>
             <properties>
-                <maven.compiler.source>14</maven.compiler.source>
-                <maven.compiler.target>14</maven.compiler.target>
-                <maven.compiler.compilerVersion>14</maven.compiler.compilerVersion>
+                <maven.compiler.source>17</maven.compiler.source>
+                <maven.compiler.target>17</maven.compiler.target>
+                <maven.compiler.compilerVersion>17</maven.compiler.compilerVersion>
             </properties>
         </profile>
     </profiles>
