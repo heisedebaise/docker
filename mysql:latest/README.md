@@ -37,7 +37,6 @@ docker run -d \
     -v /home/mysql/etc:/etc/mysql \
     -v /home/mysql/lib:/var/lib/mysql \
     -v /home/mysql/backup:/var/backup/mysql \
-    -v /home/mysql/log:/var/log/mysql \
     --name=mysql \
     mysql:latest
 
@@ -48,7 +47,6 @@ podman run -d \
     mysql:latest
 sleep 10s
 mkdir -p /home/mysql/backup
-mkdir -p /home/mysql/log
 podman cp mysql:/etc/mysql /home/mysql/etc
 podman cp mysql:/var/lib/mysql /home/mysql/lib
 podman stop -t 1 mysql
@@ -59,7 +57,6 @@ podman run -d \
     -v /home/mysql/etc:/etc/mysql \
     -v /home/mysql/lib:/var/lib/mysql \
     -v /home/mysql/backup:/var/backup/mysql \
-    -v /home/mysql/log:/var/log/mysql \
     --name=mysql \
     mysql:latest
 
@@ -71,7 +68,6 @@ podman run -d \
     mysql:latest
 sleep 10s
 mkdir -p $HOME/mysql/backup
-mkdir -p $HOME/mysql/log
 podman cp mysql:/etc/mysql $HOME/mysql/etc
 podman cp mysql:/var/lib/mysql $HOME/mysql/lib
 podman stop -t 1 mysql
@@ -82,7 +78,6 @@ podman run -d \
     -v $HOME/mysql/etc:/etc/mysql \
     -v $HOME/mysql/lib:/var/lib/mysql \
     -v $HOME/mysql/backup:/var/backup/mysql \
-    -v $HOME/mysql/log:/var/log/mysql \
     --name=mysql \
     mysql:latest
 ```
