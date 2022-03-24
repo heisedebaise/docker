@@ -12,5 +12,3 @@ RUN apk add curl \
  && ln -s /apache-maven-$version/bin/mvn /bin/
 
 VOLUME [ "/root/.m2", "/work" ]
-
-CMD [ "sleep", "1024d" ]
