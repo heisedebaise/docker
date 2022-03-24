@@ -1,10 +1,5 @@
 # nginx:latest
 
-## 构建
-```bash
-docker build -t nginx:latest nginx\:latest/
-```
-
 ## 运行
 ```bash
 docker run -d -p 80:80 -p 443:443 \

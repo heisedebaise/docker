@@ -1,28 +1,23 @@
-# certbot:base
-
-## 构建
-```bash
-docker build -t certbot:base certbot\:base/
-
-podman build -t certbot:base certbot\:base/
-```
+# certbot:latest
 
 ## 运行
 ```bash
-docker run -d -p 80:80/tcp -p 443:443/tcp \
+docker run --rm \
     --privileged=true \
-    --restart=always \
-    --name=certbot certbot:base
-
-podman run -d -p 80:80/tcp -p 443:443/tcp \
-    --privileged=true \
-    --name=certbot certbot:base
+    --network=local \
+    --name=certbot \
+    certbot/certbot:latest
 ```
 
 ## 新证书
 
 ```
-docker exec -it certbot certbot certonly --standalone --register-unsafely-without-email -d git.xmhy.ltd
+docker run -d --rm \
+    --privileged=true \
+    --network=local \
+    --name=certbot \
+    certbot/certbot:latest \
+    certonly --standalone --register-unsafely-without-email -d
 ```
 
 ## 取消监听端口
