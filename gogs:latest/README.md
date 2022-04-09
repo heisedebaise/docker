@@ -1,5 +1,5 @@
 ```
-docker run -d \
+docker run -d -p 2222:22 \
     --privileged=true \
     --restart=always \
     --network=local \
