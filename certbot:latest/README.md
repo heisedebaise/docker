@@ -12,12 +12,13 @@ docker run --rm \
 ## 新证书
 
 ```
-docker run -d --rm \
+docker run --rm \
+    -p 80:80 -p 443:443 \
     --privileged=true \
     --network=local \
     --name=certbot \
     certbot/certbot:latest \
-    certonly --standalone --register-unsafely-without-email -d
+    certonly --nginx --register-unsafely-without-email -d
 ```
 
 ## 取消监听端口

@@ -11,11 +11,12 @@ podman build -t alpine:base alpine\:base/
 
 ## 运行
 ```bash
-docker run -it \
+docker run -it --rm \
     --privileged=true \
     --network=local \
     --name=alpine \
-    alpine:base
+    alpine:base \
+    sh
 
 podman run -it \
     --privileged=true \
