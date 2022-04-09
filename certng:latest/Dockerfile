@@ -14,7 +14,7 @@ COPY run.sh /certng/bin/
 
 RUN chmod +x /certng/bin/run.sh
 
-VOLUME [ "/etc/nginx/http.d/", "/var/log/nginx/", "/var/log/certbot" ]
+VOLUME [ "/etc/nginx/http.d/", "/var/log/nginx/", "/etc/letsencrypt", "/var/log/certbot" ]
 
 EXPOSE 80
 EXPOSE 443

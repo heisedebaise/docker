@@ -31,9 +31,10 @@ docker run -d -p 80:80 -p 443:443 \
     --privileged=true \
     --restart=always \
     --network=local \
-    -v /home/nginx/conf.d:/etc/nginx/conf.d \
+    -v /home/nginx/http.d:/etc/nginx/http.d \
     -v /home/nginx/log:/var/log/nginx \
-    -v /home/nginx/certbot:/etc/letsencrypt \
+    -v /home/certbot/letsencrypt:/etc/letsencrypt \
+    -v /home/certbot/log:/var/log/certbot \
     --name=nginx \
     certng:latest
 
