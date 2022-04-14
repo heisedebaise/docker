@@ -27,7 +27,8 @@ podman run -d -p 80:80 -p 443:443 \
 ## 运行（推荐）
 
 ```
-docker run -d -p 80:80 -p 443:443 \
+docker run -d \
+    -p 80:80 -p 443:443 \
     --privileged=true \
     --restart=always \
     --network=local \
@@ -94,7 +95,7 @@ server {
     error_page 404 /;
 
     location / {
-        root /certbot/to-https/;
+        root /certng/http/;
     }
 }
 
@@ -102,7 +103,6 @@ server {
     listen 443 ssl;
     server_name {domain name};
 
-    ssl                  on;
     ssl_certificate      /etc/letsencrypt/live/{domain name}/fullchain.pem;
     ssl_certificate_key  /etc/letsencrypt/live/{domain name}/privkey.pem;
     ssl_session_timeout  5m;
