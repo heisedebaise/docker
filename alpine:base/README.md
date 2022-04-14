@@ -15,10 +15,9 @@ docker run -it --rm \
     --privileged=true \
     --network=local \
     --name=alpine \
-    alpine:base \
-    sh
+    alpine:base
 
-podman run -it \
+podman run -it --rm \
     --privileged=true \
     --pod=local \
     --name=alpine \
