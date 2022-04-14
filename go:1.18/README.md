@@ -11,15 +11,13 @@ podman build -t go:1.18 go\:1.18/
 ## 运行
 
 ```bash
-docker run -d \
+docker run -it --rm \
     --privileged=true \
     --name=go \
-    go:1.18 \
-    sleep 1d
+    go:1.18
 
-podman run -d \
+podman run -it --rm \
     --privileged=true \
     --name=go \
-    go:1.18 \
-    sleep 1d
+    go:1.18
 ```
