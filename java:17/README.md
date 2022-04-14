@@ -11,12 +11,12 @@ podman build -t java:17 java\:17/
 ## 运行
 
 ```bash
-docker run -it \
+docker run -it --rm \
     --privileged=true \
     --name=java \
     java:17
 
-podman run -it \
+podman run -it --rm \
     --privileged=true \
     --name=java \
     java:17
