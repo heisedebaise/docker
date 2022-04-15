@@ -50,7 +50,6 @@ podman run -d \
     tomcat:9.0.x
 
 mkdir -p $HOME/tomcat/webapps
-mkdir -p $HOME/tomcat/upload
 mkdir -p $HOME/tomcat/logs
 podman run -d \
     --privileged=true \
