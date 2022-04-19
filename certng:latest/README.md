@@ -36,7 +36,7 @@ docker run -d \
     -v /home/nginx/log:/var/log/nginx \
     -v /home/certbot/letsencrypt:/etc/letsencrypt \
     -v /home/certbot/log:/var/log/certbot \
-    --name=nginx \
+    --name=certng \
     certng:latest
 
 mkdir -p /home/nginx/conf.d
