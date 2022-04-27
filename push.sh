@@ -2,7 +2,7 @@
 
 for file in `ls`;do
 echo $file
-    if [ "$file" =~ ":" ]; then
+    if [[ "$file" =~ ":" ]]; then
         git add $file
     fi
 done
