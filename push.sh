@@ -1,10 +1,7 @@
 #!/bin/bash
 
-for file in `ls`;do
-echo $file
-    if [[ "$file" =~ ":" ]]; then
-        git add $file
-    fi
+for file in `ls | grep ':'`; do
+    git add $file
 done
 
 git add k8s

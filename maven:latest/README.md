@@ -34,34 +34,26 @@ docker run -d \
     --name=maven \
     maven:latest \
     sleep 1024d
-
-mkdir -p /home/maven/.m2
-mkdir -p /home/maven/work
-podman run -d \
-    --privileged=true \
-    -v /home/maven/.m2:/root/.m2 \
-    -v /home/maven/work:/work \
-    --name=maven \
-    maven:latest \
-    sleep 1024d
+cp maven\:latest/settings.xml /home/maven/.m2/
 
 mkdir -p $HOME/maven/.m2
-mkdir -p $HOME/maven/work
 podman run -d \
     --privileged=true \
     -v $HOME/maven/.m2:/root/.m2 \
-    -v $HOME/maven/work:/work \
+    -v $HOME/work:/work \
     --name=maven \
     maven:latest \
-    sleep 1024d
+    sleep 1d
+cp maven\:latest/settings.xml $HOME/maven/.m2/
+```
+
+```
 ```
 
 ## 编译
 
 ```
-docker exec maven mvn -f /work/photon clean
-docker exec maven mvn -f /work/photon install
+docker exec maven mvn -f /work/photon clean install
 
-podman exec maven mvn -f /work/photon clean
-podman exec maven mvn -f /work/photon install
+podman exec maven mvn -f /work/photon clean install
 ```
