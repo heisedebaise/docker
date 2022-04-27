@@ -1,9 +1,8 @@
 #!/bin/bash
 
-for file in `ls`
-do
-    if [[ $file =~ ":" ]]
-    then
+for file in `ls`;do
+echo $file
+    if [ $file =~ ":" ]; then
         git add $file
     fi
 done
