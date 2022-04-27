@@ -39,6 +39,7 @@ cp maven\:latest/settings.xml /home/maven/.m2/
 mkdir -p $HOME/maven/.m2
 podman run -d \
     --privileged=true \
+    --pod=local \
     -v $HOME/maven/.m2:/root/.m2 \
     -v $HOME/work:/work \
     --name=maven \
