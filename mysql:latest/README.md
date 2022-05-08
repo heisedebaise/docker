@@ -82,5 +82,10 @@ podman run -d \
 ```
 
 ```
+# ERROR 2061 (HY000): Authentication plugin 'caching_sha2_password' reported error: Authentication requires secure connection.
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
+```
+
+```
 echo "alias mysql='docker exec -it mysql mysql -uroot -proot'" >> /etc/profile.d/alias.sh
 ```
