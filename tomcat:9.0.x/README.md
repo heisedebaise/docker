@@ -30,7 +30,6 @@ podman run -d -p 8080:8080 \
 docker run -d \
     --privileged=true \
     --restart=always \
-    --memory-swappiness=0 \
     --network=local \
     -v /home/tomcat/webapps:/tomcat/webapps \
     -v /home/tomcat/logs:/tomcat/logs \
