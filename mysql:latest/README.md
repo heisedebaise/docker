@@ -25,6 +25,7 @@ docker run -d \
     --name=mysql \
     mysql:latest
 sleep 10s
+rm -rf /home/mysql
 mkdir -p /home/mysql
 docker cp mysql:/etc/mysql /home/mysql/etc
 docker cp mysql:/var/lib/mysql /home/mysql/lib
