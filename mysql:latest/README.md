@@ -67,10 +67,9 @@ podman run -d \
     mysql:latest
 sleep 10s
 rm -rf $HOME/mysql
-mkdir -p $HOME/mysql/etc
-mkdir -p $HOME/mysql/lib
-podman cp mysql:/etc/mysql/ $HOME/mysql/etc/
-podman cp mysql:/var/lib/mysql/ $HOME/mysql/lib/
+mkdir -p $HOME/mysql
+podman cp mysql:/etc/mysql $HOME/mysql/etc
+podman cp mysql:/var/lib/mysql $HOME/mysql/lib
 podman stop -t 1 mysql
 podman rm mysql
 podman run -d \
