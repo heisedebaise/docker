@@ -6,21 +6,6 @@
 docker run -d \
     --privileged=true \
     --restart=always \
-    --name=mysql \
-    mysql:latest
-
-podman run -d \
-    --privileged=true \
-    --name=mysql \
-    mysql:latest
-```
-
-## 运行（推荐）
-
-```bash
-docker run -d \
-    --privileged=true \
-    --restart=always \
     -e MYSQL_ROOT_PASSWORD=root \
     --name=mysql \
     mysql:latest
