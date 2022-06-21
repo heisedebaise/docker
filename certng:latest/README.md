@@ -15,12 +15,12 @@ podman build -t certng:latest certng\:latest/
 docker run -d -p 80:80 -p 443:443 \
     --privileged=true \
     --restart=always \
-    --name=nginx \
+    --name=certng \
     certng:latest
 
 podman run -d -p 80:80 -p 443:443 \
     --privileged=true \
-    --name=nginx \
+    --name=certng \
     certng:latest
 ```
 
@@ -49,7 +49,7 @@ podman run -d -p 80:80 -p 443:443 \
     -v /home/nginx/conf.d:/etc/nginx/conf.d \
     -v /home/nginx/log:/var/log/nginx \
     -v /home/nginx/certbot:/etc/letsencrypt \
-    --name=nginx \
+    --name=certng \
     certng:latest
 
 mkdir -p $HOME/nginx/conf.d
@@ -62,27 +62,27 @@ podman run -d -p 80:80 -p 443:443 \
     -v $HOME/nginx/conf.d:/etc/nginx/conf.d \
     -v $HOME/nginx/log:/var/log/nginx \
     -v $HOME/nginx/certbot:/etc/letsencrypt \
-    --name=nginx \
+    --name=certng \
     certng:latest
 ```
 
 ## 更新配置
 
 ```
-docker exec -it nginx nginx -t
-docker exec -it nginx nginx -s reload
+docker exec -it certng nginx -t
+docker exec -it certng nginx -s reload
 ```
 
 ## 新证书
 
 ```
-docker exec -it nginx certbot --nginx --register-unsafely-without-email -d {domain name}
+docker exec -it certng certbot --nginx --register-unsafely-without-email -d {domain name}
 ```
 
 ## 删除证书
 
 ```
-docker exec -it nginx certbot delete
+docker exec -it certng certbot delete
 ```
 
 ## conf.d/{domain name}.conf
