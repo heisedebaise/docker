@@ -75,3 +75,24 @@ FLUSH PRIVILEGES;
 ```
 echo "alias mysql='docker exec -it mysql mysql -uroot -proot'" >> /etc/profile.d/alias.sh
 ```
+
+# backup
+
+```
+#!/bin/bash
+
+cd /etc/mysql/backup
+for schema in mysql
+do
+  mysqldump -uroot -proot $schema > $schema.sql
+done
+
+name=`date +"%Y%m%d%H%M%S"`
+tar -czf $name.tar.gz *.sql
+rm -rf *.sql
+find . -name '*.tar.gz' -mtime +30 -exec rm -rf {} \;
+```
+
+```
+docker exec mysql sh /etc/mysql/backup/run.sh
+```
