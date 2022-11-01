@@ -112,11 +112,10 @@ server {
 
     client_max_body_size 64m;
 
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
-
     location / {
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
         proxy_pass http://{tomcat}:8080;
     }
 }
