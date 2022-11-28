@@ -25,3 +25,13 @@ sudo sed -e 's|^mirrorlist=|#mirrorlist=|g' \
          -i.bak \
          /etc/yum.repos.d/CentOS-*.repo
 ```
+
+# centos 9
+
+```
+dnf install -y yum-utils
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+dnf install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+systemctl enable docker
+systemctl restart docker
+```
