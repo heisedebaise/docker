@@ -26,6 +26,7 @@ docker run  -d \
 git clone https://github.com/kasmtech/workspaces-images.git
 cd workspaces-images
 cp dockerfile-kasm-desktop dockerfile-kasm-desktop-custom
+nano dockerfile-kasm-desktop-custom
 
 # sudo
 RUN apt-get update \
