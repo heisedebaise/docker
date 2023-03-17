@@ -10,5 +10,5 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
  && rm -rf glibc-*.apk \
  && rm -rf /etc/apk/keys/sgerrand.rsa.pub \
  && /usr/glibc-compat/bin/localedef -i zh_CN -f UTF-8 zh_CN.UTF-8 \
- && apk add tzdata \
+ && apk add tzdata fontconfig \
  && ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
