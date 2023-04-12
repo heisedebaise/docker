@@ -42,3 +42,11 @@ echo '{
   "registry-mirrors": ["https://docker.mirrors.ustc.edu.cn"]
 }' > /etc/docker/daemon.json
 ```
+
+# Alibaba Cloud Linux 3
+
+```
+dnf config-manager --add-repo=https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+dnf -y install dnf-plugin-releasever-adapter --repo alinux3-plus
+dnf -y install docker-ce --nobest
+```
