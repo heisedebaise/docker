@@ -24,11 +24,13 @@ podman run -it \
 
 ## 运行（推荐）
 ```bash
-docker run -it \
+docker run -d \
     --privileged=true \
     --network=local \
-    --name=nodejs \
-    nodejs:lts
+    -v /home/maven/work/hospital-web:/hospital \
+    --name=hospital-web \
+    python:2 \
+    sleep 1024d
 
 podman run -it \
     --privileged=true \
