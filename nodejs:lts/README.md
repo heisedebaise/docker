@@ -27,10 +27,8 @@ podman run -it \
 docker run -d \
     --privileged=true \
     --network=local \
-    -v /home/maven/work/hospital-web:/hospital \
-    --name=hospital-web \
-    python:2 \
-    sleep 1024d
+    --name=nodejs \
+    nodejs:lts
 
 podman run -it \
     --privileged=true \
