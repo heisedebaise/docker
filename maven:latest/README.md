@@ -48,9 +48,6 @@ podman run -d \
 cp maven\:latest/settings.xml $HOME/maven/.m2/
 ```
 
-```
-```
-
 ## 编译
 
 ```
