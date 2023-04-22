@@ -43,7 +43,7 @@ podman run -d \
     --privileged=true \
     --pod=local \
     -v $HOME/tomcat/webapps:/tomcat/webapps \
-    -v $HOME/tomcat/upload:/tomcat/upload \
+    -v $HOME/tomcat/upload:/tomcat/webapps/ROOT/upload \
     -v $HOME/tomcat/logs:/tomcat/logs \
     --name=tomcat \
     tomcat:10.1.x
