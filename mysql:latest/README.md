@@ -96,3 +96,13 @@ find . -name '*.tar.gz' -mtime +30 -exec rm -rf {} \;
 ```
 docker exec mysql sh /etc/mysql/backup/run.sh
 ```
+
+# binlog
+
+```
+show variables like '%logs%';
+
+set global binlog_expire_logs_seconds=7*24*3600;
+
+PURGE MASTER LOGS TO 'binlog.000001';
+```
