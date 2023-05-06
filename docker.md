@@ -29,6 +29,15 @@ systemctl enable docker
 systemctl restart docker
 ```
 
+## debian
+
+```
+apt install -y docker.io
+
+systemctl enable docker
+systemctl restart docker
+```
+
 # network
 
 ```
