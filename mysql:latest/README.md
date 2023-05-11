@@ -14,7 +14,7 @@ rm -rf /home/mysql
 mkdir -p /home/mysql
 docker cp mysql:/etc/mysql /home/mysql/etc
 docker cp mysql:/var/lib/mysql /home/mysql/lib
-docker stop -t 1 mysql
+docker stop mysql
 docker rm mysql
 docker run -d \
     --privileged=true \
