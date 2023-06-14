@@ -73,7 +73,7 @@ FLUSH PRIVILEGES;
 ```
 
 ```
-echo "alias mysql='docker exec -it mysql mysql -uroot -proot'" >> /etc/profile.d/alias.sh
+echo "alias mysql='docker exec -it mysql mysql --default-character-set=utf8 -uroot -p'" >> /etc/profile.d/alias.sh
 ```
 
 # backup
