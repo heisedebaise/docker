@@ -79,10 +79,22 @@ docker exec -it certng nginx -s reload
 docker exec -it certng certbot --nginx --register-unsafely-without-email -d {domain name}
 ```
 
+## 更新证书
+
+```
+docker exec -it certng certbot renew --nginx
+```
+
 ## 删除证书
 
 ```
 docker exec -it certng certbot delete
+```
+
+## 查看证书
+
+```
+openssl x509 -enddate -noout -in /home/certbot/letsencrypt/live/{domain}/fullchain.pem
 ```
 
 ## conf.d/{domain name}.conf
