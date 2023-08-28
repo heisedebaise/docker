@@ -132,3 +132,26 @@ server {
     }
 }
 ```
+
+```
+server {
+    listen 80;
+    server_name {domain name};
+
+    rewrite ^/(.*)$ https://{domain name}/$1 permanent;
+}
+
+server {
+    listen 443 ssl;
+    server_name {domain name};
+
+    ssl_certificate      /etc/letsencrypt/live/{domain name}/fullchain.pem;
+    ssl_certificate_key  /etc/letsencrypt/live/{domain name}/privkey.pem;
+    ssl_session_timeout  5m;
+    ssl_protocols  TLSv1.2 TLSv1.3;
+    ssl_ciphers  HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers   on;
+
+    rewrite ^/(.*)$ https://{domain name}/$1 permanent;
+}
+```
