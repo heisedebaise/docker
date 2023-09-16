@@ -6,10 +6,10 @@ RUN apk add gcc g++ libffi-dev python3-dev augeas-libs nginx \
  && /opt/certbot/bin/pip install certbot certbot-nginx \
  && ln -s /opt/certbot/bin/certbot /usr/bin/certbot \
  && mv /etc/nginx/http.d/default.conf /etc/nginx/http.d/default.conf.example \
- && mkdir -p /certng/html \
+ && mkdir -p /nginx/http \
  && mkdir -p /certng/bin
 
-COPY https.html /certng/http/index.html
+COPY https.html /nginx/http/index.html
 COPY run.sh /certng/bin/
 
 RUN chmod +x /certng/bin/run.sh

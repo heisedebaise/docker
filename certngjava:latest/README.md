@@ -1,12 +1,12 @@
-# certng:latest
+# certngjava:latest
 
-certbot+nginx
+certbot+nginx+java17
 
 ## 构建
 ```
-docker build -t certng:latest certng\:latest/
+docker build -t certngjava:latest certngjava\:latest/
 
-podman build -t certng:latest certng\:latest/
+podman build -t certngjava:latest certngjava\:latest/
 ```
 
 ## 运行
@@ -15,13 +15,13 @@ podman build -t certng:latest certng\:latest/
 docker run -d -p 80:80 -p 443:443 \
     --privileged=true \
     --restart=always \
-    --name=certng \
-    certng:latest
+    --name=certngjava \
+    certngjava:latest
 
 podman run -d -p 80:80 -p 443:443 \
     --privileged=true \
-    --name=certng \
-    certng:latest
+    --name=certngjava \
+    certngjava:latest
 ```
 
 ## 运行（推荐）
@@ -36,8 +36,8 @@ docker run -d \
     -v /home/nginx/log:/var/log/nginx \
     -v /home/certbot/letsencrypt:/etc/letsencrypt \
     -v /home/certbot/log:/var/log/certbot \
-    --name=certng \
-    certng:latest
+    --name=certngjava \
+    certngjava:latest
 
 mkdir -p /home/nginx/conf.d
 mkdir -p /home/nginx/log
@@ -49,8 +49,8 @@ podman run -d -p 80:80 -p 443:443 \
     -v /home/nginx/conf.d:/etc/nginx/conf.d \
     -v /home/nginx/log:/var/log/nginx \
     -v /home/nginx/certbot:/etc/letsencrypt \
-    --name=certng \
-    certng:latest
+    --name=certngjava \
+    certngjava:latest
 
 mkdir -p $HOME/nginx/conf.d
 mkdir -p $HOME/nginx/log
@@ -62,33 +62,33 @@ podman run -d -p 80:80 -p 443:443 \
     -v $HOME/nginx/conf.d:/etc/nginx/conf.d \
     -v $HOME/nginx/log:/var/log/nginx \
     -v $HOME/nginx/certbot:/etc/letsencrypt \
-    --name=certng \
-    certng:latest
+    --name=certngjava \
+    certngjava:latest
 ```
 
 ## 更新配置
 
 ```
-docker exec -it certng nginx -t
-docker exec -it certng nginx -s reload
+docker exec -it certngjava nginx -t
+docker exec -it certngjava nginx -s reload
 ```
 
 ## 新证书
 
 ```
-docker exec -it certng certbot --nginx --register-unsafely-without-email -d {domain name}
+docker exec -it certngjava certbot --nginx --register-unsafely-without-email -d {domain name}
 ```
 
 ## 更新证书
 
 ```
-docker exec -it certng certbot renew --nginx
+docker exec -it certngjava certbot renew --nginx
 ```
 
 ## 删除证书
 
 ```
-docker exec -it certng certbot delete
+docker exec -it certngjava certbot delete
 ```
 
 ## 查看证书
@@ -107,7 +107,7 @@ server {
     error_page 404 /;
 
     location / {
-        root /nginx/http/;
+        root /certngjava/http/;
     }
 }
 
