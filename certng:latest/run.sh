@@ -7,7 +7,6 @@ if [ `grep '8.8.8.8' /etc/resolv.conf | wc -l` -eq 0 ]; then
     echo 'nameserver 4.4.4.4' >> /etc/resolv.conf
 fi
 
-
 today=`date +%Y%m%d`
 while [[ true ]]
 do
