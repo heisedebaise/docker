@@ -9,4 +9,4 @@ git add *.md
 git add *.sh
 git commit -m dev
 git push
-git push github
+# git push github
