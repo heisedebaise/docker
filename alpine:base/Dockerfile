@@ -3,7 +3,8 @@ FROM docker.io/library/alpine
 COPY sgerrand.rsa.pub /etc/apk/keys/
 COPY *.apk /
 
-RUN apk update \
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
+ && apk update \
  && apk upgrade \
  && apk add --force-overwrite glibc-2.35-r1.apk glibc-bin-2.35-r1.apk glibc-i18n-2.35-r1.apk \
  && rm -rf glibc-*.apk \
