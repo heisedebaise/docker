@@ -6,7 +6,7 @@ docker run  -d \
     -p 6901:6901 \
     -e VNC_PW=password \
     --name=chrome \
-    kasmweb/chrome:1.13.0
+    kasmweb/chrome:1.14.0
 ```
 
 # desktop
@@ -17,7 +17,7 @@ docker run  -d \
     -p 6901:6901 \
     -e VNC_PW=password \
     --name=desktop \
-    kasmweb/desktop:1.13.0
+    kasmweb/desktop:1.14.0
 ```
 
 # custom
