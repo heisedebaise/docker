@@ -160,7 +160,7 @@ server {
 proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=cache:64m max_size=2g inactive=60m;
 
 server {
-    location ~* (\.(css|js|png|jpg|jpeg|gif|ico|ttf|otf)$)|(^\/upload\/) {
+    location ~* \.(css|js|png|jpg|jpeg|gif|ico|ttf|otf)$ {
         proxy_cache cache;
         proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
         proxy_cache_valid 200 302 60m;
