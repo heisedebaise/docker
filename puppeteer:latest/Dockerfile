@@ -1,5 +1,9 @@
 FROM debian:latest
 
+RUN mkdir -p /puppeteer/
+
+COPY run.sh /puppeteer/
+
 RUN apt update \
  && apt install -y curl gnupg2 \
  && curl -sS https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
@@ -8,4 +12,9 @@ RUN apt update \
  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
  && apt update \
- && apt install -y google-chrome-stable nodejs yarn
+ && apt install -y google-chrome-stable nodejs yarn \
+ && chmod +x /puppeteer/run.sh
+
+EXPOSE 3000
+
+ CMD [ "/puppeteer/run.sh" ]
