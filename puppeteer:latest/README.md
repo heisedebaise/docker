@@ -5,4 +5,6 @@
 ## 构建
 ```bash
 docker build -t puppeteer:latest puppeteer\:latest/
+
+podman build -t puppeteer:latest puppeteer\:latest/
 ```
