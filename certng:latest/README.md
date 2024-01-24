@@ -34,6 +34,7 @@ docker run -d \
     --network=local \
     -v /home/nginx/http.d:/etc/nginx/http.d \
     -v /home/nginx/log:/var/log/nginx \
+    -v /home/webpage:/var/lib/webpage \
     -v /home/certbot/letsencrypt:/etc/letsencrypt \
     -v /home/certbot/log:/var/log/certbot \
     --name=certng \
