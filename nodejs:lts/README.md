@@ -27,8 +27,10 @@ podman run -it \
 docker run -d \
     --privileged=true \
     --network=local \
+    -v /home/nodejs:/nodejs \
     --name=nodejs \
-    nodejs:lts
+    nodejs:lts \
+    sleep 1024d
 
 podman run -it \
     --privileged=true \
